@@ -1,0 +1,17 @@
+.rowhover:hover {
+  background-color: #111;
+}
+
+thead {
+ background-color: #13e;
+ color: white;
+}
+
+body {
+  padding-top: 50px;
+/*  background-image: url("/assets/cream_pixels_@2X.png");
+*/}
+
+#add {
+  background-color: #eee;
+}

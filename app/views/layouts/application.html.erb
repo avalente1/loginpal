@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <%= link_to "LoginPal", sites_url, class: "brand" %>
+    <ul class="nav">
+      <li><%= link_to "List", sites_url, class: "active" %></li>
+      <li><%= link_to "Manager", edit_site_url(1), class: "active" %></li>
+      <li><%= link_to "Log out", edit_site_url(1), class: "pull-right" %></li>
+    </ul>
+  </div>
+  </div>
+
+<%= yield %>
+
+</body>
+</html>

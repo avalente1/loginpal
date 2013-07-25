@@ -1,0 +1,35 @@
+<div class= "row-fluid">
+  <div class= "span10 offset1">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Username</th>
+          <th>Password hint</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @s.each do |site| %>
+        <tr>
+          <%= form_tag site_url(site.id), method: "patch" do %>
+          <td><%= text_field_tag :company, site[:company] %></td>
+          <td><%= text_field_tag :username, site[:username] %></td>
+          <td><%= text_field_tag :pwhint, site[:pwhint] %></td>
+              <%= hidden_field_tag :cell, site.id %>
+          <td><%= submit_tag "Save changes", class: "btn btn-success" %></td>
+              <% end %>
+        </tr>
+        <% end %>
+        <tr id="add">
+          <%= form_tag "http://localhost:3000/sites", method: "post" do %>
+            <td><%= text_field_tag :company, nil, placeholder: "Company" %></td>
+            <td><%= text_field_tag :username, nil, placeholder: "Username" %></td>
+            <td><%= text_field_tag :pwhint, nil, placeholder: "Password Hint" %></td>
+            <td><%= submit_tag "Add", class: "btn btn-primary" %>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
