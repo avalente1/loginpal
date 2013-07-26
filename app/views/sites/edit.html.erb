@@ -6,6 +6,7 @@
           <th>Company</th>
           <th>Username</th>
           <th>Password hint</th>
+          <th>User ID </th>
           <th> </th>
         </tr>
       </thead>
@@ -16,6 +17,7 @@
           <td><%= text_field_tag :company, site[:company] %></td>
           <td><%= text_field_tag :username, site[:username] %></td>
           <td><%= text_field_tag :pwhint, site[:pwhint] %></td>
+          <td><%= text_field_tag :user_id, site[:user_id] %></td>
               <%= hidden_field_tag :cell, site.id %>
           <td><%= submit_tag "Save changes", class: "btn btn-success" %></td>
               <% end %>

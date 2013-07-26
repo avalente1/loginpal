@@ -4,18 +4,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    s = Site.new
-    s.company = params[:company]
-    s.site = params[:site]
-    s.username = params[:username]
-    s.pwhint = params[:pwhint]
-    s.save
+    @s = Site.all
+    u = User.new
+    u.email = params["email"]
+    u.password = params["password"]
+    u.save
 
-    redirect_to sites_url
+    redirect_to user_url(params[:id])
   end
 
   def index
     @s = Site.all
+    @u = User.all
 
     respond_to do |format|
       format.html { render 'index' }
@@ -24,7 +24,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to sites_url
+    @s = Site.all
+    @u = params[:id]
   end
 
   def edit

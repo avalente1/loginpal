@@ -1,0 +1,55 @@
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+h1 a {
+  text-align: center;
+  color: #ddd;
+  text-shadow: 1px 1px #222;
+  font-size: 35px;
+  /*background-image: url('file:///Users/maciek/Documents/start/photos/concrete_gradient.jpg');*/
+}
+
+h1 a:hover {
+  text-align: center;
+  color: #ccc;
+  text-shadow: 1px 1px #111;
+  text-decoration: none
+}
+
+.btn-primary {
+  font-size: 16px;
+  margin: 5px 5px 10px 5px;
+  padding: 5px 30px;
+}
+
+h3 label {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 0 15px 0;
+}
+
+body {
+  /*padding: 10px;*/
+  /*background-image: url('file:///Users/maciek/Documents/start/photos/concrete_gradient.jpg');*/
+}
+
+label {
+  display: inline;
+}
+
+.remember input {
+  margin-top: 0px;
+ }
+
+nav li {
+  list-style: none;
+  display: inline;
+  text-decoration: none;
+}
+
+/*h1 {
+  font-size: 28px
+}*/

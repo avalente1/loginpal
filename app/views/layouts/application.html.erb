@@ -9,11 +9,10 @@
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-      <%= link_to "LoginPal", sites_url, class: "brand" %>
+      <%= link_to "LoginPal", users_url, class: "brand" %>
     <ul class="nav">
-      <li><%= link_to "List", sites_url, class: "active" %></li>
+      <li><%= link_to "List", user_url(1), class: "active" %></li>
       <li><%= link_to "Manager", edit_site_url(1), class: "active" %></li>
-      <li><%= link_to "Log out", edit_site_url(1), class: "pull-right" %></li>
     </ul>
   </div>
   </div>

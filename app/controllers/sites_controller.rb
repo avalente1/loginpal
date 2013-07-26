@@ -4,18 +4,21 @@ class SitesController < ApplicationController
   end
 
   def create
+    @s = Site.all
     s = Site.new
     s.company = params[:company]
     s.site = params[:site]
     s.username = params[:username]
     s.pwhint = params[:pwhint]
+    s.user_id = params[:user_id]
     s.save
 
-    redirect_to sites_url
+    redirect_to user_url(params[:id])
   end
 
   def index
     @s = Site.all
+    @u = params[:user_id]
 
     respond_to do |format|
       format.html { render 'index' }
@@ -37,6 +40,7 @@ class SitesController < ApplicationController
     s.site = params[:site]
     s.username = params[:username]
     s.pwhint = params[:pwhint]
+    s.user_id = params[:user_id]
     s.save
     redirect_to sites_url, notice: "You have successfully updated your account"
   end
