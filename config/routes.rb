@@ -2,6 +2,7 @@ Password::Application.routes.draw do
   root "sites#index"
 
   resources :sites
+  resources :users
 
 # Create
 #   get "sites/new" => "sites#new"

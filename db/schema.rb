@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724235612) do
+ActiveRecord::Schema.define(version: 20130726181717) do
 
   create_table "sites", force: true do |t|
     t.string "company"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20130724235612) do
     t.string "username"
     t.string "pwhint"
     t.string "favicon"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
