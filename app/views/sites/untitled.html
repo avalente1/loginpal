@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap-responsive.css">
+  <link rel="stylesheet" type="text/css" href="loginpal.css">
+  <link data-turbolinks-track="true" href="/assets/application.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/bootstrap-responsive.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/bootstrap.css?body=1" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/loginpal.css?body=1" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/assets/jquery.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/jquery_ujs.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/turbolinks.js?body=1"></script>
+<script data-turbolinks-track="true" src="/assets/application.js?body=1"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="vR4oi60JUIFywXMXazmV9rJo3fvYl6L0UYoT9GNv/2k=" name="csrf-token" />
+</head>
+<body>
+<div class= "row-fluid">
+  <div class= "span12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Username</th>
+          <th>Password hint</th>
+          <th> </th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="add">
+            <form accept-charset="UTF-8" action="http://localhost:3000/sites" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="vR4oi60JUIFywXMXazmV9rJo3fvYl6L0UYoT9GNv/2k=" /></div>
+              <td><input id="company" name="company" placeholder="Company" type="text" /></td>
+              <td><input id="username" name="username" placeholder="Username" type="text" /></td>
+              <td><input id="pwhint" name="pwhint" placeholder="Password hint" type="text" /></td>
+              <td><input class="btn btn-success" name="commit" type="submit" value="Add" /></td>
+              <td> </td>
+</form>          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Chase.com"><img alt="Favicon?domain=www.chase" src="https://plus.google.com/_/favicon?domain=www.Chase.com" /></a> Chase</strong></td>
+            <td class="rowhover">Avalente1</td>
+            <td class="rowhover">usual capitalized update</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/10/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/10" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Facebook.com"><img alt="Favicon?domain=www.facebook" src="https://plus.google.com/_/favicon?domain=www.Facebook.com" /></a> Facebook</strong></td>
+            <td class="rowhover">avalente1</td>
+            <td class="rowhover">usual</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/11/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/11" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Netflix.com"><img alt="Favicon?domain=www.netflix" src="https://plus.google.com/_/favicon?domain=www.Netflix.com" /></a> Netflix</strong></td>
+            <td class="rowhover">avalente99</td>
+            <td class="rowhover">usual + number</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/13/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/13" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.AmericanAirlines.com"><img alt="Favicon?domain=www.americanairlines" src="https://plus.google.com/_/favicon?domain=www.AmericanAirlines.com" /></a> American Airlines</strong></td>
+            <td class="rowhover">187xrx8</td>
+            <td class="rowhover">short usual</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/14/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/14" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Google.com"><img alt="Favicon?domain=www.google" src="https://plus.google.com/_/favicon?domain=www.Google.com" /></a> Google</strong></td>
+            <td class="rowhover">avalente111@gmail.com</td>
+            <td class="rowhover">usual + number</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/15/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/15" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.codecademy.com"><img alt="Favicon?domain=www.codecademy" src="https://plus.google.com/_/favicon?domain=www.codecademy.com" /></a> codecademy</strong></td>
+            <td class="rowhover">avalente111@gmail.com</td>
+            <td class="rowhover">usual + number</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/16/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/16" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.UnitedAirlines.com"><img alt="Favicon?domain=www.unitedairlines" src="https://plus.google.com/_/favicon?domain=www.UnitedAirlines.com" /></a> United Airlines</strong></td>
+            <td class="rowhover">JY214656</td>
+            <td class="rowhover">usual + number + capitalized</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/19/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/19" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Mint.com"><img alt="Favicon?domain=www.mint" src="https://plus.google.com/_/favicon?domain=www.Mint.com" /></a> Mint</strong></td>
+            <td class="rowhover">avalente</td>
+            <td class="rowhover">long + number + symbol</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/21/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/21" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Github.com"><img alt="Favicon?domain=www.github" src="https://plus.google.com/_/favicon?domain=www.Github.com" /></a> Github</strong></td>
+            <td class="rowhover">avalente111@gmail.com</td>
+            <td class="rowhover">usual</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/22/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/22" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.LinkedIn.com"><img alt="Favicon?domain=www.linkedin" src="https://plus.google.com/_/favicon?domain=www.LinkedIn.com" /></a> LinkedIn</strong></td>
+            <td class="rowhover">anthony.valente@booz.com</td>
+            <td class="rowhover">usual + number</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/23/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/23" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.OpenTable.com"><img alt="Favicon?domain=www.opentable" src="https://plus.google.com/_/favicon?domain=www.OpenTable.com" /></a> Open Table</strong></td>
+            <td class="rowhover">avalente</td>
+            <td class="rowhover">usual + number in middle</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/24/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/24" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Groupon.com"><img alt="Favicon?domain=www.groupon" src="https://plus.google.com/_/favicon?domain=www.Groupon.com" /></a> Groupon</strong></td>
+            <td class="rowhover">Facebook</td>
+            <td class="rowhover">facebook</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/25/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/25" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.37signals.com"><img alt="Favicon?domain=www.37signals" src="https://plus.google.com/_/favicon?domain=www.37signals.com" /></a> 37signals</strong></td>
+            <td class="rowhover">brozran01</td>
+            <td class="rowhover">usual + number</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/26/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/26" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Twitter.com"><img alt="Favicon?domain=www.twitter" src="https://plus.google.com/_/favicon?domain=www.Twitter.com" /></a> Twitter</strong></td>
+            <td class="rowhover">avalente111@gmail.com</td>
+            <td class="rowhover">usual + number</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/27/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/27" rel="nofollow">Delete</a>
+          </tr>
+          <tr>
+            <td class="rowhover"><strong><a href="http://www.Yahoo.com"><img alt="Favicon?domain=www.yahoo" src="https://plus.google.com/_/favicon?domain=www.Yahoo.com" /></a> Yahoo</strong></td>
+            <td class="rowhover">eleanor 111111</td>
+            <td class="rowhover">capitalized usual</td>
+            <td class="rowhover"><a class="btn btn-warning" data-method="get" href="http://localhost:3000/sites/28/edit">Edit</a>
+            <td class="rowhover"><a class="btn btn-danger" data-method="delete" href="http://localhost:3000/sites/28" rel="nofollow">Delete</a>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+</body>
+</html>

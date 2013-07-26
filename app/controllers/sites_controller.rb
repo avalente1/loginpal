@@ -16,6 +16,11 @@ class SitesController < ApplicationController
 
   def index
     @s = Site.all
+
+    respond_to do |format|
+      format.html { render 'index' }
+      format.json { render json: @s }
+    end
   end
 
   def show
@@ -33,7 +38,7 @@ class SitesController < ApplicationController
     s.username = params[:username]
     s.pwhint = params[:pwhint]
     s.save
-    redirect_to sites_url
+    redirect_to sites_url, notice: "You have successfully updated your account"
   end
 
   def destroy
