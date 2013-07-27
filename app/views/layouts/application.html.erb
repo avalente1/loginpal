@@ -11,13 +11,14 @@
     <div class="navbar-inner">
       <%= link_to "LoginPal", users_url, class: "brand" %>
     <ul class="nav">
-      <li><%= link_to "List", user_url(1), class: "active" %></li>
+      <li><%= link_to "Sign Up", new_user_url, class: "active" %></li>
+      <li><%= link_to "User 1", user_url(1), class: "active" %></li>
       <li><%= link_to "Manager", edit_site_url(1), class: "active" %></li>
     </ul>
   </div>
   </div>
 <div class="span10 offset1">
-  <p><%= notice %></p>
+  <%= notice %>
 </div>
 
 <%= yield %>

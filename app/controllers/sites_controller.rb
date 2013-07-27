@@ -13,7 +13,7 @@ class SitesController < ApplicationController
     s.user_id = params[:user_id]
     s.save
 
-    redirect_to user_url(params[:id])
+    redirect_to user_url(params[:user_id]), notice: "Succesfully added a website!"
   end
 
   def index
@@ -42,13 +42,13 @@ class SitesController < ApplicationController
     s.pwhint = params[:pwhint]
     s.user_id = params[:user_id]
     s.save
-    redirect_to sites_url, notice: "You have successfully updated your account"
+    redirect_to user_url(params[:user_id]), notice: "You have successfully updated your account"
   end
 
   def destroy
     s = Site.find(params[:id])
     s.destroy
-    redirect_to sites_url
+    redirect_to user_url(params[:user_id])
   end
 
 end

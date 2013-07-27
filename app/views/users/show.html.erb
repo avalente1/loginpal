@@ -26,8 +26,11 @@
             <td class="rowhover"><strong><%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com" %><%= " #{site[:company]}" %></strong></td>
             <td class="rowhover"><%= site[:username] %></td>
             <td class="rowhover"><%= site[:pwhint] %></td>
-            <td class="rowhover"><%= link_to "Edit", edit_site_url(site.id), method: "get", class: "btn btn-warning" %>
-            <td class="rowhover"><%= link_to "Delete", site_url(site.id), method: "delete", class: "btn btn-danger" %>
+            <td class="rowhover"><%= link_to "Edit", edit_site_url(params[:id]), method: "get", class: "btn btn-warning" %></td>
+            <%= form_tag site_url(site.id), method: "delete" do %>
+            <%= hidden_field_tag :user_id, params[:id] %>
+            <td class="rowhover"><%= submit_tag "Delete", class: "btn btn-danger" %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
