@@ -9,16 +9,27 @@
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-      <%= link_to "LoginPal", users_url, class: "brand" %>
+      <%= link_to "LoginPal", new_session_url, class: "brand" %>
     <ul class="nav">
-      <li><%= link_to "Sign Up", new_user_url, class: "active" %></li>
-      <li><%= link_to "User 1", user_url(1), class: "active" %></li>
-      <li><%= link_to "Manager", edit_site_url(1), class: "active" %></li>
+
+ <% if current_user.present? %>
+      <li><%= link_to "My Hints", user_url(current_user.id) %></li>
+      <li><%= link_to "Manager", edit_site_url(current_user.id) %></li>
+      <li><%= link_to "Sign Out", session_url, method: 'delete' %></li>
+<% else %>
+      <li><%= link_to "Sign Up", new_user_url %></li>
+      <li><%= link_to "Sign In", new_session_url %></li>
+      <% end %>
     </ul>
   </div>
   </div>
 <div class="span10 offset1">
-  <%= notice %>
+ <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">&times;</a>
+        <%= msg %>
+      </div>
+    <% end %>
 </div>
 
 <%= yield %>
