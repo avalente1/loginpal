@@ -10,14 +10,14 @@
         </tr>
       </thead>
       <tbody>
-        <% (@s.where user_id: "#{params[:id]}").each do |site| %>
+        <% @sites.each do |site| %>
         <tr>
-          <%= form_tag site_url(site.id), method: "patch" do %>
+          <%= form_tag site_url(1), method: "patch" do %>
           <td><%= text_field_tag :company, site[:company] %></td>
           <td><%= text_field_tag :username, site[:username] %></td>
           <td><%= text_field_tag :pwhint, site[:pwhint] %></td>
               <%= hidden_field_tag :user_id, site[:user_id] %>
-              <%= hidden_field_tag :cell, site.id %>
+              <%= hidden_field_tag :site_id, site.id %>
           <td><%= submit_tag "Save changes", class: "btn btn-success" %></td>
               <% end %>
         </tr>
@@ -27,7 +27,7 @@
             <td><%= text_field_tag :company, nil, placeholder: "Company" %></td>
             <td><%= text_field_tag :username, nil, placeholder: "Username" %></td>
             <td><%= text_field_tag :pwhint, nil, placeholder: "Password Hint" %></td>
-            <td><%= submit_tag "Add", class: "btn btn-primary" %>
+            <td><%= button_tag '<i class="icon-plus"></i>'.html_safe, class: "btn btn-primary" %>
           <% end %>
         </tr>
       </tbody>

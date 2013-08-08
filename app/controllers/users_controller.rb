@@ -1,51 +1,67 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:update, :destroy, :show, :edit]
+  before_action :current_user_must_be_user, only: [:update, :destroy, :show, :edit]
+
+  def find_user
+    @user = User.find_by(id: current_user.id)
+  end
+
+  def current_user_must_be_user
+    if @user != current_user
+      redirect_to new_session_url, :notice => "You must be logged in."
+    end
+  end
 
   def new
   end
 
   def create
-    @s = Site.all
-    u = User.new
-    u.email = params["email"]
-    u.password = params["password"]
-    u.save
+    @user = User.new
+    @user.email = params[:email].downcase
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
 
-    redirect_to user_url(params[:id])
-  end
-
-  def index
-    @s = Site.all
-    @u = User.all
-
-    respond_to do |format|
-      format.html { render 'index' }
-      format.json { render json: @s }
+    if @user.save
+      reset_session
+      session[:user_id] = @user.id
+      redirect_to sites_url, notice: "Signed up successfully"
+    else
+      flash.now[:error] = "Something went wrong. Please try again."
+      render 'new'
     end
   end
 
   def show
-    @s = Site.all
-    @u = params[:id]
+    @sites = current_user.sites
+
+    respond_to do |format|
+      format.html { render 'show' }
+      format.json { render json: @s }
+    end
   end
 
   def edit
-    @s = Site.all
+    @sites = current_user.sites
   end
 
   def update
-    s = Site.find(params[:cell])
-    s.company = params[:company]
-    s.site = params[:site]
-    s.username = params[:username]
-    s.pwhint = params[:pwhint]
-    s.save
-    redirect_to sites_url, notice: "You have successfully updated your account"
+    @user.email = params[:email].downcase
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_url(params[:id]), notice: "Updated account successfully"
+    else
+      flash.now[:error] = "Something went wrong. Please try again."
+      render 'new'
+    end
   end
 
   def destroy
-    s = Site.find(params[:id])
-    s.destroy
-    redirect_to sites_url
+    @user.destroy
+    reset_session
+    redirect_to new_user_url
   end
 
 end
