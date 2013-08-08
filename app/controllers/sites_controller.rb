@@ -1,54 +1,74 @@
 class SitesController < ApplicationController
+  before_action :find_site, only: [:update, :destroy]
+  before_action :find_sites, only: [:index, :edit]
+  before_action :current_user_must_own_site, only: [:update, :destroy]
+  before_action :current_user_must_own_sites, only: [:index, :edit]
+
+  def find_site
+    @site = Site.find(params[:site_id])
+  end
+
+  def find_sites
+    @sites = current_user.sites
+  end
+
+  def current_user_must_own_site
+    if @site.user != current_user
+       redirect_to sites_url, :notice => "Please sign in."
+    end
+  end
+
+  def current_user_must_own_sites
+    @sites.each do |s|
+      if s.user != current_user
+       redirect_to sites_url, :notice => "Please sign in."
+      end
+    end
+  end
 
   def new
   end
 
   def create
-    @s = Site.all
-    s = Site.new
-    s.company = params[:company]
-    s.site = params[:site]
-    s.username = params[:username]
-    s.pwhint = params[:pwhint]
-    s.user_id = params[:user_id]
-    s.save
+    @site = Site.new
+    @site.company = params[:company]
+    @site.site = params[:site]
+    @site.username = params[:username]
+    @site.pwhint = params[:pwhint]
+    @site.user_id = current_user.id
 
-    redirect_to user_url(params[:user_id]), notice: "Succesfully added a website!"
-  end
-
-  def index
-    @s = Site.all
-    @u = params[:user_id]
-
-    respond_to do |format|
-      format.html { render 'index' }
-      format.json { render json: @s }
+    if @site.save
+      redirect_to sites_url, notice: "Succesfully added a website!"
+    else
+      flash[:error] = "Please fill in all fields"
+      redirect_to sites_url
     end
   end
 
-  def show
-    redirect_to sites_url
+  def index
+    respond_to do |format|
+      format.html { render 'index' }
+      format.json { render json: @sites }
+    end
   end
 
   def edit
-    @s = Site.all
   end
 
   def update
-    s = Site.find(params[:cell])
-    s.company = params[:company]
-    s.site = params[:site]
-    s.username = params[:username]
-    s.pwhint = params[:pwhint]
-    s.user_id = params[:user_id]
-    s.save
-    redirect_to user_url(params[:user_id]), notice: "You have successfully updated your account"
+    @site.company = params[:company]
+    @site.site = params[:site]
+    @site.username = params[:username]
+    @site.pwhint = params[:pwhint]
+    @site.user_id = current_user.id
+    @site.save
+    redirect_to sites_url, notice: "You have successfully updated your account"
   end
 
   def destroy
-    s = Site.find(params[:id])
-    s.destroy
-    redirect_to user_url(params[:user_id])
+    @site.destroy
+    flash[:notice] = "Succesfully deleted"
+    redirect_to sites_url
   end
 
 end

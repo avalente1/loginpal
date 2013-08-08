@@ -7,6 +7,8 @@ end
 gem 'therubyracer'
 gem 'less-rails'
 
+gem 'starter_generators'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -48,7 +50,9 @@ end
 gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem "font-awesome-rails"
 
 # Use unicorn as the app server
 # gem 'unicorn'
