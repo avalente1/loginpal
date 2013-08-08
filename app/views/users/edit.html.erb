@@ -1,37 +1,36 @@
-<div class= "row-fluid">
-  <div class= "span10 offset1">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>Username</th>
-          <th>Password hint</th>
-          <th>User ID </th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @s.where(user_id: "#{params[:id]}").each do |site| %>
-        <tr>
-          <%= form_tag site_url(site.id), method: "patch" do %>
-          <td><%= text_field_tag :company, site[:company] %></td>
-          <td><%= text_field_tag :username, site[:username] %></td>
-          <td><%= text_field_tag :pwhint, site[:pwhint] %></td>
-          <td><%= text_field_tag :user_id, site[:user_id] %></td>
-              <%= hidden_field_tag :cell, site.id %>
-          <td><%= submit_tag "Save changes", class: "btn btn-success" %></td>
-              <% end %>
-        </tr>
-        <% end %>
-        <tr id="add">
-          <%= form_tag "http://localhost:3000/sites", method: "post" do %>
-            <td><%= text_field_tag :company, nil, placeholder: "Company" %></td>
-            <td><%= text_field_tag :username, nil, placeholder: "Username" %></td>
-            <td><%= text_field_tag :pwhint, nil, placeholder: "Password Hint" %></td>
-            <td><%= submit_tag "Add", class: "btn btn-primary" %>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
+<container>
+  <div class= "row-fluid">
+    <div class="span12 text-center">
+      <h1> <%= link_to "LoginPal", users_url %> </h1>
+    </div>
   </div>
-</div>
+  <div class="row-fluid">
+    <div class="span12 text-center">
+      <h3><%= label_tag :email, "Account Details:" %></h3>
+    </div>
+  </div>
+  <%= form_tag user_url(current_user.id), method: "patch" do %>
+    <fieldset>
+      <div class="row-fluid">
+        <div class="span12 center">
+          <%= text_field_tag :email, current_user.email, placeholder: "Email" %>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12 center">
+          <%= password_field_tag :password, nil, placeholder: "New password" %>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12 center">
+          <%= password_field_tag :password_confirmation, nil, placeholder: "New password confirmation" %>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12 center">
+          <%= submit_tag "Save Changes", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+</container>

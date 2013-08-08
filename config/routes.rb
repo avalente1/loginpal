@@ -1,5 +1,5 @@
 Password::Application.routes.draw do
-  root "sites#index"
+  root "sessions#new"
 
   get "sessions/new" => "sessions#new", as: 'new_session'
   post "sessions" => "sessions#create", as: 'sessions'

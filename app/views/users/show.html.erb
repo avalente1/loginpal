@@ -1,39 +1,29 @@
-<div class= "row-fluid">
-  <div class= "span10 offset1">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>Username</th>
-          <th>Password hint</th>
-          <th> </th>
-          <th> </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="add">
-            <%= form_tag sites_url, method: "post" do %>
-              <td><%= text_field_tag :company, nil, placeholder: "Company" %></td>
-              <td><%= text_field_tag :username, nil, placeholder: "Username" %></td>
-              <td><%= text_field_tag :pwhint, nil, placeholder: "Password hint" %></td>
-                  <%= hidden_field_tag :user_id, params[:id] %>
-              <td><%= submit_tag "Add", class: "btn btn-success" %></td>
-              <td> </td>
-            <% end %>
-          </tr>
-        <% (@s.where user_id: "#{params[:id]}").each do |site| %>
-          <tr>
-            <td class="rowhover"><strong><%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com" %><%= " #{site[:company]}" %></strong></td>
-            <td class="rowhover"><%= site[:username] %></td>
-            <td class="rowhover"><%= site[:pwhint] %></td>
-            <td class="rowhover"><%= link_to "Edit", edit_site_url(params[:id]), method: "get", class: "btn btn-warning" %></td>
-            <%= form_tag site_url(site.id), method: "delete" do %>
-            <%= hidden_field_tag :user_id, params[:id] %>
-            <td class="rowhover"><%= submit_tag "Delete", class: "btn btn-danger" %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
+<div class="row-fluid">
+  <div class="span10 offset1">
+    <table class ="table table-hover">
+      <tr>
+        <td><h4>Email:</h4></td>
+        <td><h4><%= current_user.email %></h4></td>
+      </tr>
+      <tr>
+        <td><h4># of hints: </h4></td>
+        <td><h4><%= @sites.count %></h4></td>
+      </tr>
     </table>
   </div>
 </div>
+
+<div class="row-fluid">
+  <div class="span10 offset1 text-center">
+    <%= link_to "Edit Account", edit_user_url(current_user.id), class: " btn btn-success" %>
+  </div>
+</div>
+<p>
+<div class="row-fluid">
+  <div class="span10 offset1 text-center">
+    <%= form_tag user_url(current_user.id), method: 'delete' do %>
+    <%= button_tag "Delete Account", class: " btn btn-danger" %>
+    <% end %>
+  </div>
+</div>
+</p>
