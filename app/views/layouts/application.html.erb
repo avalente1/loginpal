@@ -17,7 +17,7 @@
     <ul class="nav">
 
  <% if current_user.present? %>
-      <li><%= link_to '<i class="icon-lock"></i> My Hints'.html_safe, sites_url %></li>
+      <li><%= link_to '<i class="icon-unlock"></i> My Hints'.html_safe, sites_url %></li>
       <li><%= link_to '<i class="icon-edit"></i> Manager'.html_safe, edit_site_url(current_user.id) %></li>
       <li><%= link_to '<i class="icon-cog"></i> Account'.html_safe, user_url(current_user.id) %></li>
       <li><%= link_to '<i class="icon-signout"></i> Sign Out'.html_safe, session_url, method: 'delete' %></li>

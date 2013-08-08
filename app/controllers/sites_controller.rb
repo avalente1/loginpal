@@ -1,15 +1,27 @@
 class SitesController < ApplicationController
-  before_action :find_sites
-  before_action :current_user_must_own_sites
+  before_action :find_site, only: [:update, :destroy]
+  before_action :find_sites, only: [:index, :edit]
+  before_action :current_user_must_own_site, only: [:update, :destroy]
+  before_action :current_user_must_own_sites, only: [:index, :edit]
+
+  def find_site
+    @site = Site.find(params[:site_id])
+  end
 
   def find_sites
     @sites = current_user.sites
   end
 
+  def current_user_must_own_site
+    if @site.user != current_user
+       redirect_to sites_url, :notice => "Please sign in."
+    end
+  end
+
   def current_user_must_own_sites
     @sites.each do |s|
       if s.user != current_user
-       redirect_to sites_url, :notice => "Not authorized for that."
+       redirect_to sites_url, :notice => "Please sign in."
       end
     end
   end
@@ -44,19 +56,18 @@ class SitesController < ApplicationController
   end
 
   def update
-    s = Site.find(params[:cell])
-    s.company = params[:company]
-    s.site = params[:site]
-    s.username = params[:username]
-    s.pwhint = params[:pwhint]
-    s.user_id = current_user.id
-    s.save
+    @site.company = params[:company]
+    @site.site = params[:site]
+    @site.username = params[:username]
+    @site.pwhint = params[:pwhint]
+    @site.user_id = current_user.id
+    @site.save
     redirect_to sites_url, notice: "You have successfully updated your account"
   end
 
   def destroy
-    s = Site.find_by_id(params[:site_id])
-    s.destroy
+    @site.destroy
+    flash[:notice] = "Succesfully deleted"
     redirect_to sites_url
   end
 

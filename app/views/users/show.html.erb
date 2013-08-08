@@ -22,7 +22,7 @@
 <div class="row-fluid">
   <div class="span10 offset1 text-center">
     <%= form_tag user_url(current_user.id), method: 'delete' do %>
-    <%= button_tag "Delete Account", class: " btn btn-danger" %>
+    <%= button_tag "Delete Account", class: " btn btn-danger", data: {confirm: "Do you really want to delete your account?"} %>
     <% end %>
   </div>
 </div>

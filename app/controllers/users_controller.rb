@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def current_user_must_be_user
     if @user != current_user
-      redirect_to sites_url, :notice => "Not authorized for that."
+      redirect_to new_session_url, :notice => "You must be logged in."
     end
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       session[:user_id] = @user.id
-      redirect_to user_url(params[:id]), notice: "Signed up successfully"
+      redirect_to sites_url, notice: "Signed up successfully"
     else
       flash.now[:error] = "Something went wrong. Please try again."
       render 'new'
