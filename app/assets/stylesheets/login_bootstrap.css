@@ -50,6 +50,6 @@ nav li {
   text-decoration: none;
 }
 
-/*h1 {
-  font-size: 28px
-}*/
+.container {
+  margin-left: 85px;
+}

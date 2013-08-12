@@ -1,6 +1,8 @@
 Password::Application.routes.draw do
   root "sessions#new"
 
+  patch "sites/updateall" => "sites#update_all_sites", as: "update_all"
+
   get "sessions/new" => "sessions#new", as: 'new_session'
   post "sessions" => "sessions#create", as: 'sessions'
   delete "sessions" => "sessions#destroy", as: 'session'

@@ -1,0 +1,15 @@
+<%= form_for(@site) do |f| %>
+
+  <%= f.label :company %>
+  <%= f.text_field :company %>
+
+  <%= f.label :username %>
+  <%= f.number_field :username %>
+
+  <%= f.label :pwhint %>
+  <%= f.number_field :pwhint %>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

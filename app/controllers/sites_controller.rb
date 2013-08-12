@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_action :find_site, only: [:update, :destroy]
-  before_action :find_sites, only: [:index, :edit]
+  before_action :find_sites, only: [:index, :edit, :update_all_sites]
   before_action :current_user_must_own_site, only: [:update, :destroy]
   before_action :current_user_must_own_sites, only: [:index, :edit]
 
@@ -26,13 +26,9 @@ class SitesController < ApplicationController
     end
   end
 
-  def new
-  end
-
   def create
     @site = Site.new
     @site.company = params[:company]
-    @site.site = params[:site]
     @site.username = params[:username]
     @site.pwhint = params[:pwhint]
     @site.user_id = current_user.id
@@ -41,11 +37,14 @@ class SitesController < ApplicationController
       redirect_to sites_url, notice: "Succesfully added a website!"
     else
       flash[:error] = "Please fill in all fields"
-      redirect_to sites_url
+      render 'index'
     end
   end
 
   def index
+    @a = Array.new
+    @sites.each{|s| @a << s}
+
     respond_to do |format|
       format.html { render 'index' }
       format.json { render json: @sites }
@@ -57,7 +56,6 @@ class SitesController < ApplicationController
 
   def update
     @site.company = params[:company]
-    @site.site = params[:site]
     @site.username = params[:username]
     @site.pwhint = params[:pwhint]
     @site.user_id = current_user.id
@@ -68,6 +66,12 @@ class SitesController < ApplicationController
   def destroy
     @site.destroy
     flash[:notice] = "Succesfully deleted"
+    redirect_to sites_url
+  end
+
+  def update_all_sites
+    Site.update(params[:site].keys, params[:site].values)
+    flash[:notice] = 'Sites successfully updated.'
     redirect_to sites_url
   end
 

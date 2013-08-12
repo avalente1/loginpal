@@ -13,7 +13,7 @@
       <tbody>
         <tr id="add">
             <%= form_tag sites_url, method: "post", class: "form-inline" do %>
-              <td><%= text_field_tag :company, nil, placeholder: "Company" %></td>
+              <td><%= text_field_tag :company, nil, placeholder: "Example: Facebook", "data-provide" => "typeahead", "data-source" => "['Mike','Anthony']", autocomplete: "off" %></td>
               <td><%= text_field_tag :username, nil, placeholder: "Username" %></td>
               <td><%= text_field_tag :pwhint, nil, placeholder: "Password hint" %></td>
                   <%= hidden_field_tag :user_id, current_user.id %>
