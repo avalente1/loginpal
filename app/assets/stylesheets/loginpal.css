@@ -20,3 +20,7 @@ body {
   top: 7.5%;
   left: 77.6%;
 }
+
+input[type="text"] {
+  margin-bottom: 0px
+}
