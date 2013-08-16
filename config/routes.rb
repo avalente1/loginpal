@@ -7,6 +7,8 @@ Password::Application.routes.draw do
   post "sessions" => "sessions#create", as: 'sessions'
   delete "sessions" => "sessions#destroy", as: 'session'
 
+  get "json" => "sites#json", as: 'json'
+
   resources :sites
   resources :users
 

@@ -4,6 +4,9 @@ class SitesController < ApplicationController
   before_action :current_user_must_own_site, only: [:update, :destroy]
   before_action :current_user_must_own_sites, only: [:index, :edit]
 
+  def json
+  end
+
   def find_site
     @site = Site.find(params[:site_id])
   end
