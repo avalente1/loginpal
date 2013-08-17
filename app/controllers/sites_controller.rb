@@ -83,9 +83,4 @@ class SitesController < ApplicationController
       render 'edit'
     end
   end
-
 end
-      # Old code
-      # Site.update(params[:site].keys, params[:site].values)
-      # flash[:notice] = 'Sites successfully updated.'
-      # redirect_to sites_url
