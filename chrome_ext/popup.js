@@ -1,11 +1,12 @@
 
-            $.getJSON('http://loginpal.herokuapp.com/sites.json', 'limit=1', processWebsites);
+            $.getJSON('http://loginpal.herokuapp.com/sites.json', 'limit=10', processWebsites);
             function processWebsites(data) {
             var infoHTML='';
 
 
 
             $.each(data, function(website, websiteDetails) {
+            infoHTML+= websiteDetails.company;
             infoHTML+= websiteDetails.username;
             infoHTML+= websiteDetails.pwhint;
             });

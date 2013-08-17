@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
+  before_action :user_must_be_signed_in, except: [:new, :create]
   before_action :find_user, only: [:update, :destroy, :show, :edit]
   before_action :current_user_must_be_user, only: [:update, :destroy, :show, :edit]
+
+  def user_must_be_signed_in
+    unless current_user.present?
+      flash[:info] = "Please sign in or sign up!"
+      redirect_to new_session_url
+    end
+  end
 
   def find_user
     @user = User.find_by(id: current_user.id)

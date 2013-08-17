@@ -1,5 +1,5 @@
 Password::Application.routes.draw do
-  root "sessions#new"
+  root "sites#index"
 
   patch "sites/updateall" => "sites#update_all_sites", as: "update_all"
 

@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
       response.headers['Access-Control-Request-Method'] = '*'
     end
 
-
-
   def current_user
     return User.find_by(id: session[:user_id])
   end

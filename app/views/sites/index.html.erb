@@ -13,7 +13,7 @@
       <tbody>
         <tr id="add">
             <%= form_tag sites_url, method: "post", class: "form-inline" do %>
-              <td><%= text_field_tag :company, nil, placeholder: "Example: Facebook", "data-provide" => "typeahead", "data-source" => "['Mike','Anthony']", autocomplete: "off" %></td>
+              <td><%= text_field_tag :company, nil, placeholder: "Example: Facebook", "data-provide" => "typeahead", "data-source" => ["Mike", "Anthony"], autocomplete: "off" %></td>
               <td><%= text_field_tag :username, nil, placeholder: "Username" %></td>
               <td><%= text_field_tag :pwhint, nil, placeholder: "Password hint" %></td>
                   <%= hidden_field_tag :user_id, current_user.id %>
@@ -22,15 +22,18 @@
             <% end %>
           </tr>
         <% @sites.each do |site| %>
-          <tr>
-            <td><strong><%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com" %><%= " #{site[:company]}" %></strong></td>
+          <tr class = "rowhover">
+            <td><strong>
+                <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com" %>
+                <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com" %>
+            </strong></td>
             <td><%= site[:username] %></td>
             <td><%= site[:pwhint] %></td>
-            <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_site_url(site.id), method: "get", class: "btn btn-warning" %></td>
+            <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_site_url(site.id), method: "get", class: "btn btn-warning button-hover" %></td>
             <%= form_tag site_url(site.id), method: "delete" do %>
-            <%= hidden_field_tag :user_id, current_user.id %>
-            <%= hidden_field_tag :site_id, site.id %>
-            <td><%= button_tag '<i class="icon-remove"></i>'.html_safe, class: "btn btn-danger", id: 'new' %></td>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= hidden_field_tag :site_id, site.id %>
+              <td><%= button_tag '<i class="icon-remove"></i>'.html_safe, class: "btn btn-danger button-hover", id: 'new' %></td>
             <% end %>
           </tr>
         <% end %>
