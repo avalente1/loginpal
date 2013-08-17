@@ -55,13 +55,14 @@ class SitesController < ApplicationController
   end
 
   def index
-    @a = Array.new
-    @sites.each{|s| @a << s}
+    @sites_array = Array.new
+    @sites.each{|s| @sites_array << s}
+    @sites_sort = @sites_array.sort_by{|site| site[:company].titleize}
 
     respond_to do |format|
       format.html { render 'index' }
-      format.json { render json: @a }
-      format.xml { render xml: @a }
+      format.json { render json: @sites_array }
+      format.xml { render xml: @sites_array }
     end
   end
 

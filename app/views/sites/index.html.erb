@@ -3,7 +3,7 @@
     <table class="table table-hover">
       <thead>
         <tr data-spy="affix" data-offset-top="200">
-          <th><%= link_to "Company", sites_url %></th>
+          <th>Company</th>
           <th>Username</th>
           <th>Password hint</th>
           <th> </th>
@@ -21,7 +21,7 @@
               <td></td>
             <% end %>
           </tr>
-        <% @sites.each do |site| %>
+        <% @sites_sort.each do |site| %>
           <tr class = "rowhover">
             <td><strong>
                 <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com" %>
