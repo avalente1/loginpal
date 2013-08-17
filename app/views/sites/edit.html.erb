@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <%= form_for :site, :url => {action: 'update_all_sites'}, method: 'patch' do %>
-          <% @sites.each do |site| %>
+          <% @sites_sort.each do |site| %>
             <%= fields_for "site[]", site do |site_fields| %>
             <tr>
               <td><%= site_fields.text_field :company %></td>

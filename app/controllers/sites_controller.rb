@@ -67,6 +67,7 @@ class SitesController < ApplicationController
   end
 
   def edit
+    @sites_sort = @sites.sort_by{|site| site[:company].titleize}
   end
 
   def destroy
