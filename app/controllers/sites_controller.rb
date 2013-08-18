@@ -61,8 +61,8 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       format.html { render 'index' }
-      format.json { render json: @sites_array }
-      format.xml { render xml: @sites_array }
+      format.json { render json: @sites_sort }
+      format.xml { render xml: @sites_sort }
     end
   end
 
