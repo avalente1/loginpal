@@ -1,3 +1,5 @@
+<%#= current_user.sites.each{|site| site.pwhint_sb.decrypt 'Login99pal!'} %>
+
 <div class= "row-fluid">
   <div class= "span10 offset1">
     <table class="table table-hover">
@@ -6,6 +8,7 @@
           <th>Company</th>
           <th>Username</th>
           <th>Password hint</th>
+          <th>Hint_encrypted </th>
           <th> </th>
           <th> </th>
         </tr>
@@ -17,6 +20,7 @@
               <td><%= text_field_tag :username, nil, placeholder: "Username" %></td>
               <td><%= text_field_tag :pwhint, nil, placeholder: "Password hint", "data-toggle" => "tooltip", title: "Please do not insert actual passwords, only hints" %></td>
                   <%= hidden_field_tag :user_id, current_user.id %>
+              <td></td>
               <td><%= button_tag '<i class="icon-plus"></i>'.html_safe, class: "btn btn-success", id: 'new' %></td>
               <td></td>
             <% end %>
@@ -29,6 +33,7 @@
             </strong></td>
             <td><%= site[:username] %></td>
             <td><%= site[:pwhint] %></td>
+            <td><%= site.pwhint_sb.decrypt 'Login99pal!' %></td>
             <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_site_url(site.id), method: "get", class: "btn btn-warning button-hover" %></td>
             <%= form_tag site_url(site.id), method: "delete" do %>
               <%= hidden_field_tag :user_id, current_user.id %>
@@ -41,6 +46,8 @@
     </table>
   </div>
 </div>
+
+
 
 <script type="text/javascript">
   $('first tooltip').tooltip(data-trigger="hover")

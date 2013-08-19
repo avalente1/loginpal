@@ -11,8 +11,12 @@ class SitesController < ApplicationController
   def distinct
     @titleize = Array.new
     #Site.all.each{ |s| @titleize << s.company.titleize}
-
     @distinct = Site.order("LOWER(company)").select(:company, :favicon, :site).distinct # TODO Need distinct to return only 1 of each (e.g. Facebook & facebook)
+    respond_to do |format|
+      format.html { render 'distinct' }
+      format.json { render json: @distinct }
+      format.xml { render xml: @distinct }
+    end
   end
 
   def user_must_be_signed_in
@@ -62,9 +66,7 @@ class SitesController < ApplicationController
   end
 
   def index
-    @sites_array = Array.new
-    @sites.each{|s| @sites_array << s}
-    @sites_sort = @sites_array.sort_by{|site| site[:company].titleize}
+    @sites_sort = @sites.sort_by{ |site| site[:company].titleize} #TODO sort_by usage or times visited site, favorites, etc. (High, Med, Low usage)
 
     respond_to do |format|
       format.html { render 'index' }
