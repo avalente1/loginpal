@@ -3,9 +3,13 @@
     <table class="table table-hover">
       <thead>
         <tr>
+          <th></th>
           <th>Company</th>
           <th>Username</th>
           <th>Password hint</th>
+          <th></th>
+          <th></th>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -19,6 +23,7 @@
           <% @sites_sort.each do |site| %>
             <%= fields_for "site[]", site do |site_fields| %>
             <tr>
+              <td><%= image_tag site.favicon %>
               <td><%= site_fields.text_field :company %></td>
               <td><%= site_fields.text_field :username %></td>
               <td><%= site_fields.text_field :pwhint %></td>

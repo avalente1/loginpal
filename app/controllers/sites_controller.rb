@@ -8,6 +8,13 @@ class SitesController < ApplicationController
   def json
   end
 
+  def distinct
+    @titleize = Array.new
+    #Site.all.each{ |s| @titleize << s.company.titleize}
+
+    @distinct = Site.order("LOWER(company)").select(:company, :favicon, :site).distinct # TODO Need distinct to return only 1 of each (e.g. Facebook & facebook)
+  end
+
   def user_must_be_signed_in
     unless current_user.present?
       flash[:info] = "Please sign in or sign up!"

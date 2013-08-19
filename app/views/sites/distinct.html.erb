@@ -1,0 +1,9 @@
+<table>
+<% @distinct.each do |site| %>
+  <tr>
+    <td><%= image_tag site.favicon %></td>
+    <td><%= site.company %></td>
+    <td><%= site.site %></td>
+  </tr>
+<% end %>
+</table>

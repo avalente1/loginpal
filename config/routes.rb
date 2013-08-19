@@ -1,6 +1,8 @@
 Password::Application.routes.draw do
   root "sites#index"
 
+  get "distinct" => "sites#distinct"
+
   patch "sites/updateall" => "sites#update_all_sites", as: "update_all"
 
   get "sessions/new" => "sessions#new", as: 'new_session'
