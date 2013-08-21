@@ -2,8 +2,8 @@ class Site < ActiveRecord::Base
   belongs_to :user
 
   validates :company, presence: true
-  validates :username, presence: true
-  validates :pwhint, presence: true
+  validates :username_sb, presence: true
+  validates :pwhint_sb, presence: true
 
   before_save :update_site
   before_save :update_favicon
@@ -21,13 +21,5 @@ class Site < ActiveRecord::Base
   def update_favicon
     self.favicon = "https://plus.google.com/_/favicon?domain=www.#{self.company.delete(" ")}.com"
   end
-
-  # def update_encrypted_pwhint
-  #   self.pwhint_sb = self.pwhint
-  # end
-
-  # def update_encrypted_username
-  #   self.username_sb = self.username
-  # end
 
 end

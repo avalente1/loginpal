@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819222850) do
+ActiveRecord::Schema.define(version: 20130821015721) do
 
   create_table "sites", force: true do |t|
-    t.string  "company"
-    t.string  "site"
-    t.string  "username"
-    t.string  "pwhint"
-    t.string  "favicon"
-    t.integer "user_id"
-    t.binary  "pwhint_sb"
-    t.binary  "pwhint_sb_key"
-    t.binary  "pwhint_sb_iv"
-    t.binary  "username_sb"
-    t.binary  "username_sb_key"
-    t.binary  "username_sb_iv"
+    t.string   "company"
+    t.string   "site"
+    t.string   "favicon"
+    t.integer  "user_id"
+    t.binary   "pwhint_sb"
+    t.binary   "pwhint_sb_key"
+    t.binary   "pwhint_sb_iv"
+    t.binary   "username_sb"
+    t.binary   "username_sb_key"
+    t.binary   "username_sb_iv"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

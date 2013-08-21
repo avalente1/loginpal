@@ -51,11 +51,9 @@ class SitesController < ApplicationController
   def create
     @site = Site.new
     @site.company = params[:company]
-    @site.username = params[:username]
-    @site.pwhint = params[:pwhint]
+    @site.username_sb = params[:username_sb]
+    @site.pwhint_sb = params[:pwhint_sb]
     @site.user_id = current_user.id
-    @site.favicon = "https://plus.google.com/_/favicon?domain=www.#{@site.company.delete(" ")}.com"
-    @site.site = "http://www.#{@site.company.delete(" ")}.com"
 
     if @site.save
       redirect_to sites_url, notice: "Succesfully added a website!"
@@ -67,11 +65,17 @@ class SitesController < ApplicationController
 
   def index
     @sites_sort = @sites.sort_by{ |site| site[:company].titleize} #TODO sort_by usage or times visited site, favorites, etc. (High, Med, Low usage)
+    @sites_decrypted = Array.new
+    @sites_sort.each do |site|
+      @sites_decrypted << site.company
+      @sites_decrypted << site.username_sb.decrypt('Login99pal!')
+      @sites_decrypted << site.pwhint_sb.decrypt('Login99pal!')
+    end
 
     respond_to do |format|
       format.html { render 'index' }
-      format.json { render json: @sites_sort.to_json(:only => [:company, :pwhint_sb, :username_sb])}
-      format.xml { render xml: @sites_sort }
+      format.json { render json: @sites_decrypted }
+      format.xml { render xml: @sites_decrypted }
     end
   end
 
