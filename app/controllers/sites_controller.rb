@@ -74,7 +74,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       format.html { render 'index' }
-      format.json { render json: @sites_decrypted }
+      format.json { render json: @sites_decrypted.to_json }
       format.xml { render xml: @sites_decrypted }
     end
   end
