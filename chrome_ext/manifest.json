@@ -12,7 +12,8 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "https://secure.flickr.com/",
+    "history",
+    "tabs",
     "http://loginpal.herokuapp.com/*",
     "http://loginpal.com/*"
   ],

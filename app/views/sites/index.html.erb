@@ -24,8 +24,8 @@
         <% @sites_sort.each do |site| %>
           <tr class = "rowhover">
             <td><strong>
-                <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com" %>
-                <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com" %>
+                <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
+                <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
             </strong></td>
             <td><%= site.username_sb.decrypt 'Login99pal!' %></td>
             <td><%= site.pwhint_sb.decrypt 'Login99pal!' %></td>
