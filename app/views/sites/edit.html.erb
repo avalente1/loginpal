@@ -19,21 +19,61 @@
         </tr>
       </thead>
       <tbody>
-        <%= form_for :site, :url => {action: 'update_all_sites'}, method: 'patch' do %>
-          <% @sites_sort.each do |site| %>
-            <%= fields_for "site[]", site do |site_fields| %>
-            <tr>
-              <td><%= image_tag site.favicon %>
-              <td><%= site_fields.text_field :company %></td>
-              <td><%= site_fields.text_field :username %></td>
-              <td><%= site_fields.text_field :pwhint %></td>
-            </tr>
-            <% end %>
-          <% end %>
-          <div data-spy="affix" data-offset-top="0" id= "save">
-            <%= button_tag 'Save all changes', class: "btn btn-success btn-large" %>
-          </div>
+        <!-- #TODO - associate loginpal password with each user -->
+      <%= form_tag update_all_url, method: "patch" do %>
+        <% @sites_sort.each do |site| %>
+          <% pwhint_de = site.pwhint_sb.decrypt 'Login99pal!' %>
+          <% username_de = site.username_sb.decrypt 'Login99pal!' %>
+          <tr>    <%= hidden_field_tag "sites[#{site.id}][id]", site.id %>
+              <td><%= image_tag site.favicon %></td>
+              <td><%= text_field_tag "sites[#{site.id}][company]", site.company %></td>
+              <td><%= text_field_tag "sites[#{site.id}][username_sb]", username_de %></td>
+              <td><%= text_field_tag "sites[#{site.id}][pwhint_sb]", pwhint_de %></td>
+          </tr>
         <% end %>
+        <div data-spy="affix" data-offset-top="0" id= "save">
+          <%= button_tag "Save all changes", class: "btn btn-success btn-large" %>
+        </div>
+      <% end %>
+
+
+      <%#= form_tag update_all_url method: 'patch' do %>
+        <%# for @site in @sites_sort %>
+          <%# @sites_sort.each do |site| %>
+          <%# @pwhint_de = site.pwhint_sb.decrypt 'Login99pal!' %>
+          <%# @username_de = site.username_sb.decrypt 'Login99pal!' %>
+            <%#= fields_for "sites_sort[]", site do |f| %>
+            <tr><td><%#= image_tag site.favicon %></td>
+            <td><%#= text_field_tag :company, site.company %></td>
+            <td><%#= text_field_tag :username_sb, @username_de %></td>
+            <td><%#= text_field_tag :pwhint_sb, @pwhint_de %></td>
+            <td><%#= hidden_field_tag :site_id, site.id %></td>
+          </tr>
+            <%# end %>
+          <%# end %>
+          <%#= button_tag "Save all changes", class: "btn btn-success btn-large" %>
+        <%# end %>
+
+
+        <%#= form_for :site, :url => {action: 'update_all_sites'}, method: 'patch' do %>
+          <%# @sites_sort.each do |site| %>
+            <%# @pwhint_de = site.pwhint_sb.decrypt 'Login99pal!' %>
+            <%# @username_de = site.username_sb.decrypt 'Login99pal!' %>
+            <%#= fields_for "site[]", site do |site_fields| %>
+            <tr>
+              <td><%#= image_tag site.favicon %>
+              <td><%#= site_fields.text_field :company %></td>
+              <td><%#= site_fields.text_field :username_sb %></td>
+              <td><%#= site_fields.text_field :pwhint_sb %></td>
+              <td><%#= text_field_tag :username_sb, @username_de %>
+              <td><%#= text_field_tag :pwhint_sb, @pwhint_de %>
+            </tr>
+            <%# end %>
+          <%# end %>
+          <div data-spy="affix" data-offset-top="0" id= "save">
+            <%#= button_tag 'Save all changes', class: "btn btn-success btn-large" %>
+          </div>
+        <%# end %>
       </tbody>
     </table>
   </div>

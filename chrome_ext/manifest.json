@@ -13,7 +13,7 @@
   },
   "permissions": [
     "https://secure.flickr.com/",
-    "http://loginpal.herokuapp.com/*"
+    "http://loginpal.com/*"
   ],
   "web_accessible_resources": ["script.js"]
 }

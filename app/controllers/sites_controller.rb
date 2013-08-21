@@ -70,13 +70,15 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       format.html { render 'index' }
-      format.json { render json: @sites_sort }
+      format.json { render json: @sites_sort.to_json(:only => [:company, :pwhint_sb, :username_sb])}
       format.xml { render xml: @sites_sort }
     end
   end
 
   def edit
     @sites_sort = @sites.sort_by{|site| site[:company].titleize}
+    @sites_decrypted = Array.new
+    @sites_sort.each{|site| @sites_decrypted << [site.company, site.username_sb.decrypt('Login99pal!'), site.pwhint_sb.decrypt('Login99pal!')]}
   end
 
   def destroy
@@ -86,12 +88,16 @@ class SitesController < ApplicationController
   end
 
   def update_all_sites
-    if Site.update(params[:site].keys, params[:site].values)
-      flash[:notice] = 'Sites successfully updated.'
-      redirect_to sites_url
-    else
-      flash[:error] = "Updates not saved. Please try again."   # Need to render edit if not saved successfully and dispplay an error
-      render 'edit'
+    params[:sites].each do |id, attributes|
+      Site.update(id, attributes)
     end
+    # if Site.update(params[:site].keys, params[:site].values)
+    #   flash[:notice] = 'Sites successfully updated.'
+    #   redirect_to sites_url
+    # else
+    #   flash[:error] = "Updates not saved. Please try again."   # TODO Need to render edit if not saved successfully and dispplay an error
+    #   render 'edit'
+    # end
+    redirect_to sites_url
   end
 end

@@ -5,8 +5,6 @@ class Site < ActiveRecord::Base
   validates :username, presence: true
   validates :pwhint, presence: true
 
-  before_save :update_encrypted_pwhint
-  before_save :update_encrypted_username
   before_save :update_site
   before_save :update_favicon
 
@@ -24,12 +22,12 @@ class Site < ActiveRecord::Base
     self.favicon = "https://plus.google.com/_/favicon?domain=www.#{self.company.delete(" ")}.com"
   end
 
-  def update_encrypted_pwhint
-    self.pwhint_sb = self.pwhint
-  end
+  # def update_encrypted_pwhint
+  #   self.pwhint_sb = self.pwhint
+  # end
 
-  def update_encrypted_username
-    self.username_sb = self.username
-  end
+  # def update_encrypted_username
+  #   self.username_sb = self.username
+  # end
 
 end
