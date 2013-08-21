@@ -1,5 +1,5 @@
 
-            $.getJSON('http://loginpal.herokuapp.com/sites.json', 'limit=10', processWebsites);
+            $.getJSON('http://loginpal.com/sites.json', 'limit=120', processWebsites);
             function processWebsites(data) {
             var infoHTML='';
 
