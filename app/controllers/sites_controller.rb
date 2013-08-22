@@ -65,15 +65,23 @@ class SitesController < ApplicationController
 
   def index
     @sites_sort = @sites.sort_by{ |site| site[:company].titleize} #TODO sort_by usage or times visited site, favorites, etc. (High, Med, Low usage)
-    @sites_decrypted = Array.new
-    @sites_sort.each{|site| @sites_decrypted << {site.id => {company: site.company, username: site.username_sb.decrypt('Login99pal!'), pwhint: site.pwhint_sb.decrypt('Login99pal!')}}}
+    @sites_decrypted = Hash.new({})
+    @sites_decrypted["sites"] = Hash.new({})
+    @sites_sort.each do |site|
+      @sites_decrypted["sites"][site.id] = Hash.new({})
+      @sites_decrypted["sites"][site.id]["id"] = site.id
+      @sites_decrypted["sites"][site.id]["company"] = site.company
+      @sites_decrypted["sites"][site.id]["username"] = site.username_sb.decrypt('Login99pal!')
+      @sites_decrypted["sites"][site.id]["pwhint"] = site.pwhint_sb.decrypt('Login99pal!')
+    end
 
+    ####### ARRAY of hashes #########
+    # @sites_decrypted = Array.new
     # @sites_sort.each do |site|
-    #   @sites_decrypted["#{site.id}"][:id] = site.id
-    #   @sites_decrypted["#{site.id}"][:company] = site.company
-    #   @sites_decrypted["#{site.id}"][:username] = site.username_sb.decrypt('Login99pal!')
-    #   @sites_decrypted["#{site.id}"][:pwhint] = site.username_sb.decrypt('Login99pal!')
+    #   @sites_decrypted << {site.id => {company: site.company, username: site.username_sb.decrypt('Login99pal!'), pwhint: site.pwhint_sb.decrypt('Login99pal!')}}
     # end
+
+    # @sites_sort.each{|site| {site.id => {company: site.company, username: site.username_sb.decrypt('Login99pal!'), pwhint: site.pwhint_sb.decrypt('Login99pal!')}}}
 
     respond_to do |format|
       format.html { render 'index' }
