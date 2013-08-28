@@ -1,15 +1,22 @@
 
-            $.getJSON('http://loginpal.com/sites.json', 'limit=120', processWebsites);
-            function processWebsites(data) {
-            var infoHTML='';
+$.getJSON('http://loginpal.herokuapp.com/sites.json', 'limit=150', processWebsites);
+function processWebsites(data) {
+var infoHTML='';
 
 
 
-            $.each(data, function(website, websiteDetails) {
-            infoHTML+= websiteDetails.company;
-            infoHTML+= websiteDetails.username;
-            infoHTML+= websiteDetails.pwhint;
-            });
 
-            $('#info').html(infoHTML);
-            }
+
+$.each(data.sites, function(website, websiteDetails) {
+
+infoHTML+= "<tr class='rowhover'><td class='company'>" + websiteDetails.company + "</td>"
+infoHTML+= "<td class='username'>" + websiteDetails.username + "</td>"
+infoHTML+= "<td class='pwhint'>" + websiteDetails.pwhint + "</td></tr>";
+});
+
+
+$('#info').html(infoHTML);
+
+}
+
+

@@ -70,6 +70,7 @@ class SitesController < ApplicationController
     @sites_sort.each do |site|
       @sites_decrypted["sites"][site.id] = Hash.new({})
       @sites_decrypted["sites"][site.id]["id"] = site.id
+      @sites_decrypted["sites"][site.id]["favicon"] = site.favicon
       @sites_decrypted["sites"][site.id]["company"] = site.company
       @sites_decrypted["sites"][site.id]["username"] = site.username_sb.decrypt('Login99pal!')
       @sites_decrypted["sites"][site.id]["pwhint"] = site.pwhint_sb.decrypt('Login99pal!')

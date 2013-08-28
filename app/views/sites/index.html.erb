@@ -1,6 +1,6 @@
 <div class= "row-fluid">
   <div class= "span10 offset1">
-    <table class="table table-hover">
+    <table class="table table-hover table-condensed">
       <thead>
         <tr>
           <th>Company</th>
@@ -12,14 +12,7 @@
       </thead>
       <tbody>
         <tr id="add">
-            <%= form_tag sites_url, method: "post", class: "form-inline" do %>
-              <td><%= text_field_tag :company, nil, placeholder: "Example: Facebook", "data-provide" => "typeahead", "data-source" => ["Mike", "Anthony"], autocomplete: "off" %></td>
-              <td><%= text_field_tag :username_sb, nil, placeholder: "Username" %></td>
-              <td><%= text_field_tag :pwhint_sb, nil, placeholder: "Password hint", "data-toggle" => "tooltip", title: "Please do not insert actual passwords, only hints" %></td>
-                  <%= hidden_field_tag :user_id, current_user.id %>
-              <td><%= button_tag '<i class="icon-plus"></i>'.html_safe, class: "btn btn-success", id: 'new' %></td>
-              <td></td>
-            <% end %>
+            <%= render 'form_new' %>
           </tr>
         <% @sites_sort.each do |site| %>
           <tr class = "rowhover">

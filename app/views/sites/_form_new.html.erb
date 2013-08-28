@@ -1,0 +1,6 @@
+<%= form_for Site.new, class: "form-inline" do |f| %>
+  <td><%= f.text_field :company, placeholder: "Example: Facebook" %></td>
+  <td><%= f.text_field :username_sb, placeholder: "Username" %></td>
+  <td><%= f.text_field :pwhint_sb, placeholder: "Password hint" %></td>
+  <td><%= f.button '<i class="icon-plus"></i>'.html_safe, class: "btn btn-success", id: 'new' %></td></tr>
+<% end %>
