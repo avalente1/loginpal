@@ -14,6 +14,9 @@ Password::Application.routes.draw do
   resources :sites
   resources :users
 
+  match '/googlea9629a76ce818cac.html', :to => proc { |env| [200, {}, ["google-site-verification: googlea9629a76ce818cac.html"]] }
+
+
 # Create
 #   get "sites/new" => "sites#new"
 #   post "sites" => "sites#create"

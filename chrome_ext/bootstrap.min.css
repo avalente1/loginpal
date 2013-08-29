@@ -18,14 +18,19 @@ thead {
 }
 
 body {
-  padding-top: 0px;
-/*  background-image: url("/assets/cream_pixels_@2X.png");
-*/}
+  padding: 0;
+  margin: 0;
+}
 
 #add {
   background-color: #eee;
 }
 
 .company {
-  width: 200 px;
+  font-weight: bold;
+}
+
+table {
+  margin: 0;
+  padding: 0;
 }

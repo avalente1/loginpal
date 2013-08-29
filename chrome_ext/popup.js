@@ -9,7 +9,7 @@ var infoHTML='';
 
 $.each(data.sites, function(website, websiteDetails) {
 
-infoHTML+= "<tr class='rowhover'><td class='company'>" + websiteDetails.company + "</td>"
+infoHTML+= "<tr class='rowhover'><td class='company'>" + '<img src=' + websiteDetails.favicon + '> ' + websiteDetails.company + "</td>"
 infoHTML+= "<td class='username'>" + websiteDetails.username + "</td>"
 infoHTML+= "<td class='pwhint'>" + websiteDetails.pwhint + "</td></tr>";
 });

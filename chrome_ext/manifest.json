@@ -15,8 +15,6 @@
     "history",
     "tabs",
     "http://loginpal.herokuapp.com/*"
-    // ,"http://loginpal.com/*",
-    // "http://localhost:3000/sites*"
   ],
   "web_accessible_resources": ["script.js"]
 }
