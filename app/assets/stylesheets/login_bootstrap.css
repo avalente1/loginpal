@@ -53,3 +53,7 @@ nav li {
 .container {
   margin-left: 85px;
 }
+
+#cell {
+  padding: 8px 5px 1px 5px;
+}

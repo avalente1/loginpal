@@ -15,13 +15,13 @@
             <%= render 'form_new' %>
           </tr>
         <% @sites_sort.each do |site| %>
-          <tr class = "rowhover">
-            <td><strong>
+          <tr id = "rowhover">
+            <td id ="cell"><strong>
                 <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
                 <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
             </strong></td>
-            <td><%= site.username_sb.decrypt 'Login99pal!' %></td>
-            <td><%= site.pwhint_sb.decrypt 'Login99pal!' %></td>
+            <td id="cell"><%= site.username_sb.decrypt 'Login99pal!' %></td>
+            <td id="cell"><%= site.pwhint_sb.decrypt 'Login99pal!' %></td>
             <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_site_url(site.id), method: "get", class: "btn btn-warning button-hover" %></td>
             <%= form_tag site_url(site.id), method: "delete" do %>
               <%= hidden_field_tag :user_id, current_user.id %>
