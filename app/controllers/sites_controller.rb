@@ -49,21 +49,23 @@ class SitesController < ApplicationController
   end
 
   def create
-    @site = Site.new
-    @site.company = params[:company]
-    @site.username_sb = params[:username_sb]
-    @site.pwhint_sb = params[:pwhint_sb]
+    @site = Site.new(sites_params)
     @site.user_id = current_user.id
-
-    if @site.save
-      redirect_to sites_url, notice: "Succesfully added a website!"
-    else
-      flash[:error] = "Please fill in all fields"
-      render 'index'
+    respond_to do |format|
+      if @site.save
+        format.html {redirect_to sites_url, notice: "Succesfully added a website!" }
+        format.json { render action: 'index', status: :created, location: @site }
+        format.js
+      else
+        flash[:error] = "Please fill in all fields"
+        format.html { render 'index' }
+        format.json { render json: @note.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def index
+    @site = Site.new
     @sites_sort = @sites.sort_by{ |site| site[:company].titleize} #TODO sort_by usage or times visited site, favorites, etc. (High, Med, Low usage)
     @sites_decrypted = Hash.new({})
     @sites_decrypted["sites"] = Hash.new({})
@@ -88,6 +90,7 @@ class SitesController < ApplicationController
       format.html { render 'index' }
       format.json { render json: @sites_decrypted.to_json }
       format.xml { render xml: @sites_decrypted }
+      format.js
     end
   end
 
@@ -99,8 +102,12 @@ class SitesController < ApplicationController
 
   def destroy
     @site.destroy
-    flash[:notice] = "Succesfully deleted"
-    redirect_to sites_url
+    respond_to do |format|
+      flash[:notice] = "Succesfully deleted"
+      format.html { redirect_to sites_url }
+      format.json { head :no_content }
+      format.js
+    end
   end
 
   def update_all_sites
@@ -115,5 +122,8 @@ class SitesController < ApplicationController
     #   render 'edit'
     # end
     redirect_to sites_url
+  end
+  def sites_params
+    params.require(:site).permit(:company, :username_sb, :pwhint_sb)
   end
 end

@@ -12,30 +12,15 @@
       </thead>
       <tbody>
         <tr id="add">
-            <%= render 'form_new' %>
+            <%= render 'form_new', :site => Site.new %>
           </tr>
         <% @sites_sort.each do |site| %>
-          <tr id = "rowhover">
-            <td id ="cell"><strong>
-                <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
-                <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
-            </strong></td>
-            <td id="cell"><%= site.username_sb.decrypt 'Login99pal!' %></td>
-            <td id="cell"><%= site.pwhint_sb.decrypt 'Login99pal!' %></td>
-            <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_site_url(site.id), method: "get", class: "btn btn-warning button-hover" %></td>
-            <%= form_tag site_url(site.id), method: "delete" do %>
-              <%= hidden_field_tag :user_id, current_user.id %>
-              <%= hidden_field_tag :site_id, site.id %>
-              <td><%= button_tag '<i class="icon-remove"></i>'.html_safe, class: "btn btn-danger button-hover", id: 'new' %></td>
-            <% end %>
-          </tr>
+          <%= render 'site', :site => site %>
         <% end %>
       </tbody>
     </table>
   </div>
 </div>
-
-
 
 <script type="text/javascript">
   $('first tooltip').tooltip(data-trigger="hover")
