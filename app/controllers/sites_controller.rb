@@ -8,6 +8,10 @@ class SitesController < ApplicationController
   def json
   end
 
+  def home
+     render :layout => 'home.html.erb'
+  end
+
   def distinct
     @titleize = Array.new
     #Site.all.each{ |s| @titleize << s.company.titleize}
