@@ -42,3 +42,8 @@ input[type="text"] {
   color: black;
 }
 
+.navbar .nav.pull-right {
+float: right;
+margin-right: -200px;
+}
+
