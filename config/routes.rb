@@ -1,5 +1,5 @@
 Password::Application.routes.draw do
-  root "sites#index"
+  root "sessions#new"
 
   get "distinct" => "sites#distinct"
 
