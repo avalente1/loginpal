@@ -1,7 +1,7 @@
-<%= form_for site, remote: true, class: "form-inline", id: "form_new" do |f| %>
+<%= form_for site, remote: true, id: "form_new", class: "form-inline" do |f| %>
   <td><%= f.text_field :company, placeholder: "Example: Facebook", id: "company_new" %></td>
-  <td><%= f.text_field :username_sb, placeholder: "Username" %></td>
-  <td><%= f.text_field :pwhint_sb, placeholder: "Password hint" %></td>
+  <td><%= f.text_field :username_sb, placeholder: "Username", id: "username_new" %></td>
+  <td><%= f.text_field :pwhint_sb, placeholder: "Password hint", id: "pwhint_new" %></td>
   <td><%= f.button '<i class="icon-plus"></i>'.html_safe, class: "btn btn-success", id: 'new' %></td>
   <th> </th>
 <% end %>
