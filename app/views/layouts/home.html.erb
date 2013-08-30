@@ -18,15 +18,26 @@
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
 <body id = "homepagebody">
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+    <a class="brand" href="#">LoginPal</a>
+    <ul class="nav">
+      <li><a href="#">Sign Up</a></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li><%= form_tag sessions_url, class: "navbar-form form-inline" do %>
+            <%= email_field_tag :email, params[:email], placeholder: "Email", class: "input-medium" %>
+            <%= password_field_tag :password, nil, placeholder: "Password", class: "input-medium" %>
+            <%= button_tag "Login", class: "btn btn-success" %>
+        <% end %>
+      </li></ul>
+  </div>
+</div>
+</div>
 
 
 
-    <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-        <a class="close" data-dismiss="alert">&times;</a>
-        <%= msg %>
-      </div>
-    <% end %>
 
 
   <%= yield %>

@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_action :user_must_be_signed_in
+  before_action :user_must_be_signed_in, except: [:home]
   before_action :find_site, only: [:update, :destroy]
   before_action :find_sites, only: [:index, :edit, :update_all_sites]
   before_action :current_user_must_own_site, only: [:update, :destroy]
@@ -25,8 +25,7 @@ class SitesController < ApplicationController
 
   def user_must_be_signed_in
     unless current_user.present?
-      flash[:info] = "Please sign in or sign up!"
-      redirect_to new_session_url
+      redirect_to home_url
     end
   end
 
