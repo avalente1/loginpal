@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     reset_session
-    redirect_to new_user_url
+    redirect_to home_url
   end
 
 end

@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     flash[:notice] = "Signed out successfully."
-    redirect_to new_session_url
+    redirect_to home_url
   end
 
 end
