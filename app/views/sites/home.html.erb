@@ -14,7 +14,7 @@
       <h3 id="myModalLabel">SIGN UP</h3>
     </div>
     <div class="modal-body">
-    <h4 class = "text-center"><%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension before signing up'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank" %></h4></br>
+    <h4 class = "text-center"><%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension before signing up'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank", class: "btn btn-success" %></h4></br>
 
 
     <p>
@@ -38,7 +38,7 @@
 
           <div class="row-fluid">
             <div class="center">
-              <%= submit_tag "Submit", class: "btn btn-primary" %>
+              <%= submit_tag "Create Account", class: "btn btn-primary" %>
             </div>
           </div>
         </fieldset>
@@ -47,7 +47,7 @@
 
     </div>
     <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-inverse" data-dismiss="modal" aria-hidden="true">Close</button>
       <!-- <button class="btn btn-primary">Save changes</button> -->
     </div>
   </div>
@@ -63,23 +63,23 @@
   </ol>
   <!-- Carousel items -->
   <div class="carousel-inner">
-    <div class="active item"><%= image_tag("image2.png", :class=>"homescreenshot", :alt => "screenshot2") %>
+    <div class="item"><%= image_tag("image2.png", :class=>"homescreenshot", :alt => "screenshot2") %>
       <div class = "carousel-caption">
         <h4>When you get stuck at a login, simply click the chrome extension and get your reminder.</h4>
       </div>
     </div>
     <div class="item"><%= image_tag("image1.png", :class=>"homescreenshot", :alt => "screenshot1") %>
       <div class = "carousel-caption">
-        <h4>Manage your usernames and password hints of the sites you visit all from one, secure place.</h4>
+        <h4>Manage your usernames and password hints all from one, secure place.</h4>
       </div>
     </div>
 
-   <div class="item"><%= image_tag("image3.png", :class=>"homescreenshot", :alt => "screenshot3") %>
+   <div class="active item"><%= image_tag("image3.png", :class=>"homescreenshot", :alt => "screenshot3") %>
       <div class = "carousel-caption">
         <h4>Ever need help remembering your passwords?  We've got your back.</h4>
       </div>
     </div>
-
+</div>
   <!-- Carousel nav -->
   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
