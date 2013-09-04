@@ -2,7 +2,7 @@
   <table class="table table-hover table-condensed" id="new_site_table">
     <tbody>
       <tr id="add">
-        <td id="td_company"><%= f.text_field :company, placeholder: "Example: Facebook", id:"company_new", class: "input-large", "data-provide" => "typeahead","data-source" => "#{@typeahead_array}", autocomplete: "off" %></td>
+        <td id="td_company"><%= f.text_field :company, id:"company_new", placeholder: "Example: Facebook", class: "input-large", "data-provide" => "typeahead","data-source" => "#{@typeahead_array}", autocomplete: "off" %></td>
         <td id="td_username"><%= f.text_field :username_sb, placeholder: "Username", id: "username_new" %></td>
         <td id="td_pwhint"><%= f.text_field :pwhint_sb, placeholder: "Password hint", id: "pwhint_new", "data-toggle"=>"tooltip", "data-placement"=>"bottom", title: "Add a hint that will help you remember your password" %></td>
         <td id="td_edit"><%= f.button '<i class="icon-plus"></i>'.html_safe, class: "btn btn-success", id:"new" %></td>
@@ -13,6 +13,6 @@
 <% end %>
 
 <script>
-  $('#company_new').typeahead();
   $('#pwhint_new').tooltip();
+  $('#company_new').typeahead();
 </script>

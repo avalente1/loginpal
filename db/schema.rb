@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904035550) do
+ActiveRecord::Schema.define(version: 20130904211326) do
 
   create_table "sites", force: true do |t|
     t.string   "company"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20130904035550) do
     t.datetime "updated_at"
   end
 
-  create_table "typeaheads", force: true do |t|
+  create_table "typeaheadtopsites", force: true do |t|
     t.string   "company"
     t.string   "url"
     t.string   "description"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130904035550) do
     t.datetime "updated_at"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "auth_token"
   end
 
 end

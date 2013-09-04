@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email].downcase)
     if user.present? && user.authenticate(params[:password])
-      session[:user_id] = user.id
+      cookies.permanent[:auth_token] = user.auth_token
+      # session[:user_id] = user.id
       flash[:notice] = "Welcome back, #{user.email}"
       redirect_to sites_url
     else
@@ -15,7 +16,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    cookies.delete(:auth_token)
+    # reset_session
     flash[:notice] = "Signed out successfully."
     redirect_to home_url
   end

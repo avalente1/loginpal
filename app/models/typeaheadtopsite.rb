@@ -1,4 +1,4 @@
-class Typeahead < ActiveRecord::Base
+class Typeaheadtopsite < ActiveRecord::Base
   before_save :update_favicon
 
   def update_favicon

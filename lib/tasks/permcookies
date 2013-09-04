@@ -1,0 +1,21 @@
+namespace :permcookies do
+  desc "Add auth_token to all users"
+  task auth_token :environment do
+
+
+
+namespace :api do
+  desc "Fetch Twitter API updates for all users"
+  task twitter: :environment do
+    User.find_each do |user|
+      user.poll_twitter
+    end
+  end
+
+  desc "Fetch Facebook API updates for all users"
+  task facebook: :environment do
+    User.find_each do |user|
+      user.poll_facebook
+    end
+  end
+end
