@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
-  before_save { generate_token(:auth_token) }
+  before_create { generate_token(:auth_token) }
 
 
   def generate_token(column)

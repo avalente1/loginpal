@@ -60,8 +60,8 @@ class SitesController < ApplicationController
     end
     @typeahead_array = Array.new
     @typeahead = Typeaheadtopsite.all.each{|t| @typeahead_array << t.company }
-    Typeaheadtopsite.all.each{|t| t.save }
-    User.all.each{|t| t.save }
+    # Typeaheadtopsite.all.each{|t| t.save } # Save all typeaheadtopsites to make the favicon run
+    # User.all.each{|t| t.save }
     ####### ARRAY of hashes #########
     # @sites_decrypted = Array.new
     # @sites_sort.each do |site|
