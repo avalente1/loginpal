@@ -15,7 +15,6 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,15 +23,13 @@
       <% if current_user.present? %>
       <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, sites_url, class: "brand" %>
       <% else %>
-      <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, new_session_url, class: "brand" %>
+      <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, home_url, class: "brand" %>
       <% end %>
     <ul class="nav">
 
  <% if current_user.present? %>
       <li class="divider-vertical"></li>
       <li><%= link_to '<i class="icon-unlock"></i> My Hints'.html_safe, sites_url %></li>
-      <li class="divider-vertical"></li>
-      <li><%= link_to '<i class="icon-edit"></i> Manager'.html_safe, edit_site_url(current_user.id) %></li>
       <li class="divider-vertical"></li></ul>
     <ul class = "nav pull-right">
       <li class="divider-vertical"></li>

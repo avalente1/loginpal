@@ -1,48 +1,29 @@
 class SitesController < ApplicationController
   before_action :user_must_be_signed_in, except: [:home]
-  before_action :find_site, only: [:update, :destroy]
-  before_action :find_sites, only: [:index, :edit, :update_all_sites]
-  before_action :current_user_must_own_site, only: [:update, :destroy]
-  before_action :current_user_must_own_sites, only: [:index, :edit]
-
-  def json
-  end
+  before_action :find_site, only: [:destroy]
+  before_action :find_sites, only: [:index, :edit]
+  # before_action :current_user_must_own_site, only: [:update, :destroy]
+  # before_action :current_user_must_own_sites, only: [:index, :edit]
 
   def home
      render :layout => 'home.html.erb'
   end
-
-  def distinct
-    @titleize = Array.new
-    #Site.all.each{ |s| @titleize << s.company.titleize}
-    @distinct = Site.order("LOWER(company)").select(:company, :favicon, :site).distinct # TODO Need distinct to return only 1 of each (e.g. Facebook & facebook)
-    respond_to do |format|
-      format.html { render 'distinct' }
-      format.json { render json: @distinct }
-      format.xml { render xml: @distinct }
-    end
-  end
-
   def user_must_be_signed_in
     unless current_user.present?
       redirect_to home_url
     end
   end
-
   def find_site
-    @site = Site.find(params[:site_id])
+    @site = Site.find(params[:id])
   end
-
   def find_sites
     @sites = current_user.sites
   end
-
   def current_user_must_own_site
     if @site.user != current_user
        redirect_to sites_url, :notice => "Please sign in."
     end
   end
-
   def current_user_must_own_sites
     @sites.each do |s|
       if s.user != current_user
@@ -60,7 +41,7 @@ class SitesController < ApplicationController
         format.json { render action: 'index', status: :created, location: @site }
         format.js
       else
-        flash[:error] = "Please fill in all fields"
+        flash.now[:error] = "Please fill in all fields"
         format.html { render 'index' }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
@@ -77,18 +58,15 @@ class SitesController < ApplicationController
       @sites_decrypted["sites"][site.id]["id"] = site.id
       @sites_decrypted["sites"][site.id]["favicon"] = site.favicon
       @sites_decrypted["sites"][site.id]["company"] = site.company
-      @sites_decrypted["sites"][site.id]["username"] = site.username_sb.decrypt('Login99pal!')
-      @sites_decrypted["sites"][site.id]["pwhint"] = site.pwhint_sb.decrypt('Login99pal!')
+      @sites_decrypted["sites"][site.id]["username"] = site.username_sb.decrypt(ENV['SB_DECRYPT'])
+      @sites_decrypted["sites"][site.id]["pwhint"] = site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])
     end
-
     ####### ARRAY of hashes #########
     # @sites_decrypted = Array.new
     # @sites_sort.each do |site|
-    #   @sites_decrypted << {site.id => {company: site.company, username: site.username_sb.decrypt('Login99pal!'), pwhint: site.pwhint_sb.decrypt('Login99pal!')}}
+    #   @sites_decrypted << {site.id => {company: site.company, username: site.username_sb.decrypt(ENV['SB_DECRYPT']), pwhint: site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])}}
     # end
-
-    # @sites_sort.each{|site| {site.id => {company: site.company, username: site.username_sb.decrypt('Login99pal!'), pwhint: site.pwhint_sb.decrypt('Login99pal!')}}}
-
+    # @sites_sort.each{|site| {site.id => {company: site.company, username: site.username_sb.decrypt(ENV['SB_DECRYPT']), pwhint: site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])}}}
     respond_to do |format|
       format.html { render 'index' }
       format.json { render json: @sites_decrypted.to_json }
@@ -98,35 +76,66 @@ class SitesController < ApplicationController
   end
 
   def edit
+    @site = Site.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def edit_all
     @sites_sort = @sites.sort_by{|site| site[:company].titleize}
     @sites_decrypted = Array.new
-    @sites_sort.each{|site| @sites_decrypted << [site.company, site.username_sb.decrypt('Login99pal!'), site.pwhint_sb.decrypt('Login99pal!')]}
+    @sites_sort.each{|site| @sites_decrypted << [site.company, site.username_sb.decrypt(ENV['SB_DECRYPT']), site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])]}
   end
 
   def destroy
     @site.destroy
     respond_to do |format|
-      flash[:notice] = "Succesfully deleted"
+      flash.now[:notice] = "Succesfully deleted"
       format.html { redirect_to sites_url }
       format.json { head :no_content }
       format.js
     end
   end
 
-  def update_all_sites
-    params[:sites].each do |id, attributes|
-      Site.update(id, attributes)
+  def update
+    @site = Site.find_by(id: params[:id])
+    @site.company = params[:company]
+    @site.username_sb = params[:username_sb]
+    @site.pwhint_sb = params[:pwhint_sb]
+    @site.save
+    respond_to do |format|
+      format.js
     end
-    # if Site.update(params[:site].keys, params[:site].values)
-    #   flash[:notice] = 'Sites successfully updated.'
-    #   redirect_to sites_url
-    # else
-    #   flash[:error] = "Updates not saved. Please try again."   # TODO Need to render edit if not saved successfully and dispplay an error
-    #   render 'edit'
-    # end
-    redirect_to sites_url
   end
+
   def sites_params
     params.require(:site).permit(:company, :username_sb, :pwhint_sb)
   end
+
+  # def update_all_sites
+  #   respond_to do |format|
+  #     if @site.update(sites_params)
+  #       format.html
+  #       format.js
+  #     else
+  #       format.html {render action 'edit'}
+  #     end
+  #   end
+    # params[:sites].each do |id, attributes|
+    #   Site.update(id, attributes)
+    # end
+    # redirect_to sites_url
+  # end
+  # def distinct
+  #   @titleize = Array.new
+  #   #Site.all.each{ |s| @titleize << s.company.titleize}
+  #   @distinct = Site.order("LOWER(company)").select(:company, :favicon, :site).distinct # TODO Need distinct to return only 1 of each (e.g. Facebook & facebook)
+  #   respond_to do |format|
+  #     format.html { render 'distinct' }
+  #     format.json { render json: @distinct }
+  #     format.xml { render xml: @distinct }
+  #   end
+  # end
 end

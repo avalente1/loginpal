@@ -1,0 +1,12 @@
+<%= form_tag site_url(@site.id), method: :patch, remote: true, id: "site_form_#{@site.id}" do %>
+  <table class="table table-hover table-condensed">
+    <tr id="site_<%= @site.id %>">
+      <td id="td_company"><%= link_to (image_tag @site.favicon), "http://www.#{@site[:company].delete(" ")}.com", target: "_blank" %><%= text_field_tag :company, @site.company %></td>
+      <td id="td_username"><%= text_field_tag :username_sb, (@site.username_sb.decrypt ENV['SB_DECRYPT']) %></td>
+      <td id="td_pwhint"><%= text_field_tag :pwhint_sb, (@site.pwhint_sb.decrypt ENV['SB_DECRYPT']) %></td>
+      <% hidden_field_tag :id, @site.id %>
+      <td id="td_edit"><%= button_tag "Submit", class: "btn btn-inverse" %></td>
+      <td id="td_delete"></td>
+    </tr>
+  </table>
+<% end %>

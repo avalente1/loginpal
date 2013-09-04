@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
       flash[:notice] = "Welcome back, #{user.email}"
       redirect_to sites_url
     else
-      flash[:error] = "Invalid email and password combination.  Please try again or sign up!"
-      render 'new'
+      flash.now[:error] = "Invalid email and password combination.  Please try again or sign up!"
+      render 'sites/home', :layout => 'home.html.erb'
     end
   end
 

@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 group :assets do
   gem 'twitter-bootstrap-rails'
 end
+gem 'pry'
 
 gem 'therubyracer'
 gem 'less-rails'

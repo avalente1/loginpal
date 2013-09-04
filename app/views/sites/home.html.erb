@@ -2,9 +2,10 @@
 <h3 class = "text-center">With just <em>one</em> click get a Password Hint.</h3>
 
 
-
+<% if current_user.present? %>
+  <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">Refer friends!</a>
+<% else %>
 <!-- MODAL BELOW -->
-
 <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">SIGN UP</a>
 <div id = "oppositehome">
   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -53,6 +54,7 @@
 </div>
 
 <!-- MODAL ABOVE -->
+<% end %>
 
 <div id="myCarousel" class="carousel slide homecarousel">
   <ol class="carousel-indicators">

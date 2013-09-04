@@ -1,20 +1,20 @@
 Password::Application.routes.draw do
   root "sites#index"
   get "home" => "sites#home", as: 'home'
-  get "distinct" => "sites#distinct"
-  patch "sites/updateall" => "sites#update_all_sites", as: "update_all"
 
   get "sessions/new" => "sessions#new", as: 'new_session'
   post "sessions" => "sessions#create", as: 'sessions'
   delete "sessions" => "sessions#destroy", as: 'session'
-
-  get "json" => "sites#json", as: 'json'
 
   resources :sites
   resources :users
 
   get '/googlea9629a76ce818cac.html', :to => proc { |env| [200, {}, ["google-site-verification: googlea9629a76ce818cac.html"]] }
 
+  # get "distinct" => "sites#distinct"
+  # get "edit_all" => "sites#edit_all", as: "edit_all"
+  # patch "sites/updateall" => "sites#update_all_sites", as: "update_all"
+  # get "json" => "sites#json", as: 'json'
 
 # Create
 #   get "sites/new" => "sites#new"

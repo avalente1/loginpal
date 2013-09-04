@@ -1,5 +1,5 @@
 
-$.getJSON('http://loginpal.com/sites.json', 'limit=150', processWebsites);
+$.getJSON('http://www.loginpal.com/sites.json', 'limit=150', processWebsites);
 function processWebsites(data) {
 var infoHTML='';
 

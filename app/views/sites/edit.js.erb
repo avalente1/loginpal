@@ -1,0 +1,4 @@
+$('#site_table_<%= @site.id %>').replaceWith('<%= escape_javascript(render 'edit_one_form', site: @site) %>');
+
+// $('#site_<%= @site.id %>').html('<%= escape_javascript(render 'edit_one_form') %>');
+// $('#site_form_<%= @site.id %>').siblings().first().hide();

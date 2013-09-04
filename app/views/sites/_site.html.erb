@@ -1,14 +1,16 @@
-<tr class = "rowhover" id = "site_<%= site.id %>">
-  <td id ="cell"><strong>
-      <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
-      <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
-  </strong></td>
-  <td id="cell"><%= site.username_sb.decrypt 'Login99pal!' %></td>
-  <td id="cell"><%= site.pwhint_sb.decrypt 'Login99pal!' %></td>
-  <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_site_url(site.id), method: "get", class: "btn btn-warning button-hover", remote: true %></td>
-  <%= form_tag site_url(site.id), remote: true, method: "delete" do %>
-    <%= hidden_field_tag :user_id, current_user.id %>
-    <%= hidden_field_tag :site_id, site.id %>
-    <td><%= button_tag '<i class="icon-remove"></i>'.html_safe, class: "btn btn-danger button-hover", id: 'new' %></td>
-  <% end %>
-</tr>
+<table class="table table-hover table-condensed" id="site_table_<%= site.id %>">
+  <tr class = "rowhover" id="site_<%= site.id %>">
+    <td id="td_company_site" class="cell cell-vert-align"><strong>
+        <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
+        <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %></strong>
+    </td>
+    <td id="td_username_site" class="cell cell-vert-align"><%= site.username_sb.decrypt ENV['SB_DECRYPT'] %></td>
+    <td id="td_pwhint_site" class="cell cell-vert-align"><%= site.pwhint_sb.decrypt ENV['SB_DECRYPT'] %></td>
+    <td id="td_edit"><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_site_url(site.id), class: "btn btn-warning button-hover btn-small", remote: true %></td>
+    <%= form_tag site_url(site.id), remote: true, method: "delete" do %>
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= hidden_field_tag :site_id, site.id %>
+    <td id="td_delete"><%= button_tag '<i class="icon-remove"></i>'.html_safe, class: "btn btn-danger button-hover btn-small", id: 'new' %></td>
+    <% end %>
+  </tr>
+<table>

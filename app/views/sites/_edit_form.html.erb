@@ -1,0 +1,8 @@
+<% pwhint_de = site.pwhint_sb.decrypt ENV['SB_DECRYPT'] %>
+<% username_de = site.username_sb.decrypt ENV['SB_DECRYPT'] %>
+<tr id="<%= site.id %>"><%= hidden_field_tag "sites[#{site.id}][id]", site.id %>
+  <td ><%= link_to (image_tag site.favicon), "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %></td>
+  <td><%= text_field_tag "sites[#{site.id}][company]", site.company %></td>
+  <td><%= text_field_tag "sites[#{site.id}][username_sb]", username_de %></td>
+  <td><%= text_field_tag "sites[#{site.id}][pwhint_sb]", pwhint_de %></td>
+</tr>
