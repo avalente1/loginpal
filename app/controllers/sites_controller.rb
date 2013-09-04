@@ -2,9 +2,8 @@ class SitesController < ApplicationController
   before_action :user_must_be_signed_in, except: [:home]
   before_action :find_site, only: [:destroy]
   before_action :find_sites, only: [:index, :edit]
-  # before_action :current_user_must_own_site, only: [:update, :destroy]
-  # before_action :current_user_must_own_sites, only: [:index, :edit]
-
+  before_action :current_user_must_own_site, only: [:destroy]
+  before_action :current_user_must_own_sites, only: [:index]
   def home
      render :layout => 'home.html.erb'
   end
@@ -31,7 +30,6 @@ class SitesController < ApplicationController
       end
     end
   end
-
   def create
     @site = Site.new(sites_params)
     @site.user_id = current_user.id
@@ -47,7 +45,6 @@ class SitesController < ApplicationController
       end
     end
   end
-
   def index
     @site = Site.new
     @sites_sort = @sites.sort_by{ |site| site[:company].titleize} #TODO sort_by usage or times visited site, favorites, etc. (High, Med, Low usage)
@@ -74,7 +71,6 @@ class SitesController < ApplicationController
       format.js
     end
   end
-
   def edit
     @site = Site.find(params[:id])
     respond_to do |format|
@@ -82,13 +78,6 @@ class SitesController < ApplicationController
       format.js
     end
   end
-
-  def edit_all
-    @sites_sort = @sites.sort_by{|site| site[:company].titleize}
-    @sites_decrypted = Array.new
-    @sites_sort.each{|site| @sites_decrypted << [site.company, site.username_sb.decrypt(ENV['SB_DECRYPT']), site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])]}
-  end
-
   def destroy
     @site.destroy
     respond_to do |format|
@@ -98,7 +87,6 @@ class SitesController < ApplicationController
       format.js
     end
   end
-
   def update
     @site = Site.find_by(id: params[:id])
     @site.company = params[:company]
@@ -109,33 +97,7 @@ class SitesController < ApplicationController
       format.js
     end
   end
-
   def sites_params
     params.require(:site).permit(:company, :username_sb, :pwhint_sb)
   end
-
-  # def update_all_sites
-  #   respond_to do |format|
-  #     if @site.update(sites_params)
-  #       format.html
-  #       format.js
-  #     else
-  #       format.html {render action 'edit'}
-  #     end
-  #   end
-    # params[:sites].each do |id, attributes|
-    #   Site.update(id, attributes)
-    # end
-    # redirect_to sites_url
-  # end
-  # def distinct
-  #   @titleize = Array.new
-  #   #Site.all.each{ |s| @titleize << s.company.titleize}
-  #   @distinct = Site.order("LOWER(company)").select(:company, :favicon, :site).distinct # TODO Need distinct to return only 1 of each (e.g. Facebook & facebook)
-  #   respond_to do |format|
-  #     format.html { render 'distinct' }
-  #     format.json { render json: @distinct }
-  #     format.xml { render xml: @distinct }
-  #   end
-  # end
 end

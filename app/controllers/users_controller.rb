@@ -9,26 +9,19 @@ class UsersController < ApplicationController
       redirect_to new_session_url
     end
   end
-
   def find_user
     @user = User.find_by(id: current_user.id)
   end
-
   def current_user_must_be_user
     if @user != current_user
       redirect_to new_session_url, :notice => "You must be logged in."
     end
   end
-
-  def new
-  end
-
   def create
     @user = User.new
     @user.email = params[:email].downcase
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
-
     if @user.save
       reset_session
       session[:user_id] = @user.id
@@ -38,25 +31,20 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
   def show
     @sites = current_user.sites
-
     respond_to do |format|
       format.html { render 'show' }
       format.json { render json: @s }
     end
   end
-
   def edit
     @sites = current_user.sites
   end
-
   def update
     @user.email = params[:email].downcase
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
-
     if @user.save
       session[:user_id] = @user.id
       redirect_to user_url(params[:id]), notice: "Updated account successfully"
@@ -65,11 +53,9 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
   def destroy
     @user.destroy
     reset_session
     redirect_to home_url
   end
-
 end
