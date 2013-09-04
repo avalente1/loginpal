@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821015721) do
+ActiveRecord::Schema.define(version: 20130904035550) do
 
   create_table "sites", force: true do |t|
     t.string   "company"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20130821015721) do
     t.binary   "username_sb_iv"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "typeaheads", force: true do |t|
+    t.string   "company"
+    t.string   "url"
+    t.string   "description"
+    t.string   "stars"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "favicon"
   end
 
   create_table "users", force: true do |t|

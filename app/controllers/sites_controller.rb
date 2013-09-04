@@ -58,6 +58,8 @@ class SitesController < ApplicationController
       @sites_decrypted["sites"][site.id]["username"] = site.username_sb.decrypt(ENV['SB_DECRYPT'])
       @sites_decrypted["sites"][site.id]["pwhint"] = site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])
     end
+    @typeahead_array = Array.new
+    @typeahead = Typeahead.all.each{|t| @typeahead_array << t.company }
     ####### ARRAY of hashes #########
     # @sites_decrypted = Array.new
     # @sites_sort.each do |site|

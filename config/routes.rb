@@ -11,9 +11,6 @@ Password::Application.routes.draw do
 
   get '/googlea9629a76ce818cac.html', :to => proc { |env| [200, {}, ["google-site-verification: googlea9629a76ce818cac.html"]] }
 
-  # get "distinct" => "sites#distinct"
-  # get "edit_all" => "sites#edit_all", as: "edit_all"
-  # patch "sites/updateall" => "sites#update_all_sites", as: "update_all"
   # get "json" => "sites#json", as: 'json'
 
 # Create
