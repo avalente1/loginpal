@@ -57,6 +57,10 @@ gem 'font-awesome-rails'
 
 gem 'strongbox'
 
+gem 'better_errors', group: :development
+gem 'binding_of_caller', group: :development
+gem 'quiet_assets'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -26,9 +26,9 @@
         <span class="icon-bar"></span>
         </a>
         <% if current_user.present? %>
-        <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, sites_url, class: "brand" %>
+        <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, sites_url, method: "get", class: "brand" %>
         <% else %>
-        <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, home_url, class: "brand" %>
+        <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, home_url, method: "get", class: "brand" %>
         <% end %>
         <div class="nav-collapse collapse navbar-inverse-collapse">
           <ul class="nav">
@@ -41,7 +41,7 @@
             <li class="divider-vertical"></li>
             <li><%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank" %></li>
             <li class="divider-vertical"></li>
-            <li><%= link_to '<i class="icon-cog"></i> Account'.html_safe, user_url(current_user.id) %></li>
+            <li><%= link_to '<i class="icon-cog"></i> Account'.html_safe, user_url(current_user.id), method: "get" %></li>
             <li class="divider-vertical"></li>
             <li><%= link_to '<i class="icon-signout"></i> Sign Out'.html_safe, session_url, method: 'delete' %></li>
           </ul>

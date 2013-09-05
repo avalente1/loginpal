@@ -1,6 +1,10 @@
-<h1 class = "text-center">Need a LoginPal?</h1><h1 class = "text-center pull-right">
+<% unless current_user.present? %>
+  <%= link_to "Forgot Password?", "#", id:"forgot", remote: true %>
+<% end %>
+<div class="row-fluid">
+  <div class="span10 offset1">
+<h1 class = "text-center" id="need">Need a LoginPal?</h1>
 <h3 class = "text-center">With just <em>one</em> click get a Password Hint.</h3>
-
 
 <% if current_user.present? %>
   <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">Refer friends!</a>
@@ -86,6 +90,14 @@
   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
 
+</div>
+</div>
 
+<script>
 
+  $('#forgot').click(function(){
+    $('#forgot').hide();
+    $('.navbar-form').replaceWith('<%= j(render 'password_resets/reset_pass_email') %>');
+  });
+</script>
 

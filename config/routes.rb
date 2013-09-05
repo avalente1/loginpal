@@ -8,6 +8,7 @@ Password::Application.routes.draw do
 
   resources :sites
   resources :users
+  resources :password_resets
 
   get '/googlea9629a76ce818cac.html', :to => proc { |env| [200, {}, ["google-site-verification: googlea9629a76ce818cac.html"]] }
 
