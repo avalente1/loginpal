@@ -51,12 +51,12 @@ class SitesController < ApplicationController
     @sites_decrypted = Hash.new({})
     @sites_decrypted["sites"] = Hash.new({})
     @sites_sort.each do |site|
-      @sites_decrypted["sites"][site.id] = Hash.new({})
-      @sites_decrypted["sites"][site.id]["id"] = site.id
-      @sites_decrypted["sites"][site.id]["favicon"] = site.favicon
-      @sites_decrypted["sites"][site.id]["company"] = site.company
-      @sites_decrypted["sites"][site.id]["username"] = site.username_sb.decrypt(ENV['SB_DECRYPT'])
-      @sites_decrypted["sites"][site.id]["pwhint"] = site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])
+      @sites_decrypted["sites"][site.company] = Hash.new({})
+      @sites_decrypted["sites"][site.company]["id"] = site.id
+      @sites_decrypted["sites"][site.company]["favicon"] = site.favicon
+      @sites_decrypted["sites"][site.company]["company"] = site.company
+      @sites_decrypted["sites"][site.company]["username"] = site.username_sb.decrypt(ENV['SB_DECRYPT'])
+      @sites_decrypted["sites"][site.company]["pwhint"] = site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])
     end
     @typeahead_array = Array.new
     @typeahead = Typeaheadtopsite.all.each{|t| @typeahead_array << t.company }
