@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905012305) do
+ActiveRecord::Schema.define(version: 20130905201456) do
 
   create_table "sites", force: true do |t|
     t.string   "company"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20130905012305) do
   create_table "typeaheadtopsites", force: true do |t|
     t.string   "company"
     t.string   "url"
-    t.string   "description"
+    t.text     "description"
     t.string   "stars"
     t.datetime "created_at"
     t.datetime "updated_at"
