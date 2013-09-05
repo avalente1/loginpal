@@ -20,7 +20,7 @@ text = File.read("#{Rails.root}/sites.csv")
 csv = CSV.parse(text, :headers => true)
 csv.each do |row|
   row = row.to_hash.with_indifferent_access
-  Typeahead.create!(row.to_hash.symbolize_keys)
+  Typeaheadtopsite.create!(row.to_hash.symbolize_keys)
 end
 
 # "Company","Url","Description","Stars"
