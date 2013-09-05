@@ -60,6 +60,12 @@ class SitesController < ApplicationController
     end
     @typeahead_array = Array.new
     @typeahead = Typeaheadtopsite.all.each{|t| @typeahead_array << t.company }
+
+    @username_unique_array = Array.new
+    @username_unique = current_user.sites.select("username_sb, username_sb_key, username_sb_iv")
+    @username_unique.each{|u| @username_unique_array << u.username_sb.decrypt(ENV['SB_DECRYPT']) }
+    @username_unique_array_distinct = @username_unique_array.uniq
+
     # Typeaheadtopsite.all.each{|t| t.save } # Save all typeaheadtopsites to make the favicon run
     # User.all.each{|t| t.save }
     ####### ARRAY of hashes #########
@@ -71,8 +77,8 @@ class SitesController < ApplicationController
     respond_to do |format|
       format.html { render 'index' }
       format.json { render json: @sites_decrypted.to_json }
-      format.xml { render xml: @sites_decrypted }
       format.js
+      # format.xml { render xml: @sites_decrypted }
     end
   end
   def edit

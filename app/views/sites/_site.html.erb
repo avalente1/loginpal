@@ -1,8 +1,8 @@
 <table class="table table-hover table-condensed" id="site_table_<%= site.id %>">
   <tr class = "rowhover" id="site_<%= site.id %>">
     <td id="td_company_site" class="cell cell-vert-align"><strong>
-        <%= link_to (image_tag "https://plus.google.com/_/favicon?domain=www.#{site[:company].delete(" ")}.com"), "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %>
-        <%= link_to " #{site[:company]}", "http://www.#{site[:company].delete(" ")}.com", target: "_blank" %></strong>
+        <%= link_to (image_tag site.favicon), "http://www.#{site.site}", target: "_blank" %>
+        <%= link_to " #{site[:company]}", "http://www.#{site.site}", target: "_blank" %></strong>
     </td>
     <td id="td_username_site" class="cell cell-vert-align"><%= site.username_sb.decrypt ENV['SB_DECRYPT'] %></td>
     <td id="td_pwhint_site" class="cell cell-vert-align"><%= site.pwhint_sb.decrypt ENV['SB_DECRYPT'] %></td>
