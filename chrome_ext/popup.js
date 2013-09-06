@@ -3,10 +3,10 @@ $.getJSON('http://www.loginpal.com/sites.json', 'limit=150', processWebsites);
 function processWebsites(data) {
 var infoHTML='';
 
-var go_to='Please login or sign up at loginpal.com!';
+// var go_to='Please login or sign up at loginpal.com!';
 
 // if (data === nil) {
-  $('#go_to').html(go_to)
+  // $('#go_to').html(go_to)
 // }
 
 
