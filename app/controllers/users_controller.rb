@@ -23,8 +23,11 @@ class UsersController < ApplicationController
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
     if @user.save
-      reset_session
-      session[:user_id] = @user.id
+      cookies.permanent[:auth_token] = @user.auth_token
+      # email = UserMailer.welcome
+      # email.deliver
+      # reset_session
+      # session[:user_id] = @user.id
       redirect_to sites_url, notice: "Signed up successfully"
     else
       flash.now[:error] = "Something went wrong. Please try again."

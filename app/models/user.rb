@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
   before_create { generate_token(:auth_token) }
 
-
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
