@@ -20,21 +20,28 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
       <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, sites_url, method: "get", class: "brand", remote: true %>
-    <ul class="nav pull-right">
-      <% if current_user.present? %>
-        <li><%= link_to current_user.email, sites_url, method: "get" %></li>
-        <li class="divider-vertical"></li>
-        <li><%= link_to "Sign out", session_url, method: "delete" %></li>
-      <% else %>
-        <li><%= form_tag sessions_url, class: "navbar-form form-inline" do %>
-              <%= email_field_tag :email, params[:email], placeholder: "Email", class: "input-medium" %>
-              <%= password_field_tag :password, nil, placeholder: "Password", class: "input-medium" %>
-              <%= button_tag "Login", class: "btn btn-success" %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+      <div class="nav-collapse navbar-responsive-collapse collapse">
+      <ul class="nav pull-right">
+        <% if current_user.present? %>
+          <li><%= link_to current_user.email, sites_url, method: "get" %></li>
+          <li class="divider-vertical"></li>
+          <li><%= link_to "Sign out", session_url, method: "delete" %></li>
+        <% else %>
+          <li><%= form_tag sessions_url, class: "navbar-form form-inline" do %>
+                <%= email_field_tag :email, params[:email], placeholder: "Email", class: "input-medium" %>
+                <%= password_field_tag :password, nil, placeholder: "Password", class: "input-medium" %>
+                <%= button_tag "Login", class: "btn btn-success" %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 </div>
