@@ -10,6 +10,10 @@
  *
 
  *= require_self
+ *= require bootstrap
+ *= require bootstrap-responsive
+ *= login_bootstrap
+ *= loginpal
  *= require_tree .
  *= require font-awesome
  */
