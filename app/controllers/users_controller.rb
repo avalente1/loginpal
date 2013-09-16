@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       # email.deliver
       # reset_session
       # session[:user_id] = @user.id
-      redirect_to sites_url, notice: "Signed up successfully"
+      redirect_to sites_url, notice: "Signed up successfully. Download our chrome extension by clicking the link above."
     else
       flash.now[:error] = "Something went wrong. Please try again."
       render 'new'
