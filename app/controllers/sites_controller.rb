@@ -52,7 +52,7 @@ class SitesController < ApplicationController
     @sites_decrypted["sites"] = Hash.new({})
     @sites_sort.each do |site|
       @sites_decrypted["sites"][site.company] = Hash.new({})
-      @sites_decrypted["sites"][site.company]["id"] = site.id
+      # @sites_decrypted["sites"][site.company]["id"] = site.id
       @sites_decrypted["sites"][site.company]["favicon"] = site.favicon
       @sites_decrypted["sites"][site.company]["site"] = site.site
       @sites_decrypted["sites"][site.company]["company"] = site.company

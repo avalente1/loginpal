@@ -2,7 +2,7 @@ Password::Application.routes.draw do
   root "sites#index"
   get "home" => "sites#home", as: 'home'
 
-  get "sessions/new" => "sessions#new", as: 'new_session'
+  # get "sessions/new" => "sessions#new", as: 'new_session'
   post "sessions" => "sessions#create", as: 'sessions'
   delete "sessions" => "sessions#destroy", as: 'session'
 
