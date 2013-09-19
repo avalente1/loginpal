@@ -15,7 +15,7 @@
 }
 
 body {
-  padding-top: 50px;
+  padding-top: 0px;
 /*  background-image: url("/assets/cream_pixels_@2X.png");
 */}
 
@@ -137,4 +137,14 @@ form {
   position: absolute;
   top: 8.5%;
   left: 87%;
+}
+
+@media (min-width: 980px) {
+  body {
+    padding-top: 50px;
+  }
+  .nav-collapse.collapse {
+    height: auto !important;
+    overflow: visible !important;
+  }
 }

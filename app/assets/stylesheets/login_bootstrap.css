@@ -53,9 +53,18 @@ nav li {
   padding: 8px 5px 1px 5px;
 }
 
-@media (min-width: 700px;) {
+/*@media (min-width: 700px;) {
       .container {
            width: 960px;
       }
- }
+ }*/
 
+@media (min-width: 980px) {
+  .body {
+    padding-top: 0;
+  }
+  .nav-collapse.collapse {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
