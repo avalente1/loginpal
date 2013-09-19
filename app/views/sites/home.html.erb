@@ -3,8 +3,8 @@
 <% end %>
 <div class="row-fluid">
   <div class="span10 offset1">
-<h1 class = "text-center" id="need">Need a LoginPal?</h1>
-<h3 class = "text-center">With just <em>one</em> click get a Password Hint.</h3>
+<h2 class = "text-center" id="need">Have trouble remembering your Passwords?</h2>
+<h3 class = "text-center">With <em>1-click</em>, see a Password Hint & Username!</h3>
 
 <% if current_user.present? %>
   <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">Refer friends!</a>
@@ -68,7 +68,7 @@
   </ol>
   <!-- Carousel items -->
   <div class="carousel-inner">
-    <div class="item"><%= image_tag("loginpal_chrome_extension_uber_login.png", :class=>"homescreenshot", :alt => "screenshot2") %>
+    <div class="item active"><%= image_tag("loginpal_chrome_extension_uber_login.png", :class=>"homescreenshot", :alt => "screenshot2") %>
       <div class = "carousel-caption">
         <h4>When you get stuck at a login, simply click the chrome extension and get your reminder.</h4>
       </div>
@@ -79,7 +79,7 @@
       </div>
     </div>
 
-   <div class="active item"><%= image_tag("loginpal_top_websites.png", :class=>"homescreenshot", :alt => "screenshot3") %>
+   <div class="item"><%= image_tag("loginpal_top_websites.png", :class=>"homescreenshot", :alt => "screenshot3") %>
       <div class = "carousel-caption">
         <h4>Ever need help remembering your passwords?  We've got your back.</h4>
       </div>
