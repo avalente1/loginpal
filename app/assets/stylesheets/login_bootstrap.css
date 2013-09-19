@@ -53,5 +53,9 @@ nav li {
   padding: 8px 5px 1px 5px;
 }
 
-
+@media (min-width: 700px;) {
+      .container {
+           width: 960px;
+      }
+ }
 

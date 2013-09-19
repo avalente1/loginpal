@@ -13,7 +13,7 @@
   ga('create', 'UA-43597506-1', 'loginpal.com');
   ga('send', 'pageview');
 </script>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
@@ -21,16 +21,16 @@
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="span10">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </a>
         <% if current_user.present? %>
-        <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, sites_url, method: "get", class: "brand" %>
+          <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, sites_url, method: "get", class: "brand" %>
         <% else %>
-        <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, home_url, method: "get", class: "brand" %>
+          <%= link_to '<i class="icon-key"></i> LoginPal'.html_safe, home_url, method: "get", class: "brand" %>
         <% end %>
         <div class="nav-collapse collapse navbar-inverse-collapse">
           <ul class="nav">
@@ -38,14 +38,18 @@
             <li class="divider-vertical"></li>
             <li><%= link_to '<i class="icon-unlock"></i> My Hints'.html_safe, sites_url %></li>
             <li class="divider-vertical"></li>
+            <li><%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank" %></li>
+            <li class="divider-vertical"></li>
           </ul>
           <ul class = "nav pull-right">
             <li class="divider-vertical"></li>
-            <li><%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank" %></li>
-            <li class="divider-vertical"></li>
-            <li><%= link_to '<i class="icon-cog"></i> Account'.html_safe, user_url(current_user.id), method: "get" %></li>
-            <li class="divider-vertical"></li>
-            <li><%= link_to '<i class="icon-signout"></i> Sign Out'.html_safe, session_url, method: 'delete' %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to '<i class="icon-cog"></i> Account'.html_safe, user_url(current_user.id), method: "get" %></li>
+                <li><%= link_to '<i class="icon-signout"></i> Sign Out'.html_safe, session_url, method: 'delete' %></li>
+              </ul>
+            </li>
           </ul>
             <% else %>
             <li class="divider-vertical"></li>
@@ -55,10 +59,10 @@
             <li class="divider-vertical"></li>
           </ul>
             <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <% flash.each do |name, msg| %>
     <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
