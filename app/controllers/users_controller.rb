@@ -30,8 +30,8 @@ class UsersController < ApplicationController
       # session[:user_id] = @user.id
       redirect_to sites_url, notice: "Signed up successfully. Download our chrome extension by clicking the link above."
     else
-      flash.now[:error] = "Something went wrong. Please try again."
-      render 'new'
+      flash[:error] = "Email address already taken. Please sign up with a different email"
+      redirect_to :back
     end
   end
   def show
