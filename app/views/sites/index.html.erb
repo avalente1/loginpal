@@ -16,8 +16,14 @@
     <% @sites_sort.each do |site| %>
       <%= render 'site', :site => site %>
     <% end %>
+    <% if @sites.blank? %>
+      <div class="text-center chromelink">
+      <%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank", class: "btn btn-success btn-large" %>
+      </div>
+    <% end %>
   </div>
 </div>
+
 
 <script>
   $("#company_new").focus();

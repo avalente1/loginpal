@@ -1090,7 +1090,7 @@
   .nav-collapse,
   .nav-collapse.collapse {
     height: 0;
-    overflow: hidden;
+f    overflow: hidden;
   }
   .navbar .btn-navbar {
     display: block;

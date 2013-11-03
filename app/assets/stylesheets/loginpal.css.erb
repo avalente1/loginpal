@@ -38,7 +38,10 @@ float: right;
 margin-right: -200px;
 }
 
-.homescreenshot{border:thin solid lightgray;}
+.homescreenshot{
+  border:thin solid lightgray;
+  height: 235px;
+}
 
 #homepagebody{background: url(<%= image_path('dark_brick_wall.png') %>);
               color:white;
@@ -172,6 +175,7 @@ form {
   margin: 0;
   padding-top: 12px;
   padding-bottom: 12px;
+  font-weight: normal;
 }
 
 #one-click {
@@ -182,4 +186,31 @@ form {
 .modalbutton {
   margin-top: 6px;
   margin-bottom: 12px;
+}
+
+.taglines {
+  padding-top: 0;
+  margin-top: 0;
+  font-weight: normal;
+}
+
+.safetytagline{
+  color: #e6f032;
+}
+
+.bottomtagline {
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.chromelink {
+  padding: 30px;
+}
+
+.white a {
+  color: white;
+}
+
+.black a {
+  color: black;
 }

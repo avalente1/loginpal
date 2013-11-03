@@ -3,7 +3,7 @@
 <% end %>
 <div class="row-fluid">
   <div class="span10 offset1">
-    <h1 class = "text-center" id="need">Free & Secure Password Manager</h1>
+    <h1 class = "text-center" id="need"> A Free & Secure Password Manager</h1>
 
     <% if current_user.present? %>
         <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">Refer friends!</a>
@@ -15,11 +15,23 @@
 
       <!-- MODAL ABOVE -->
     <% end %>
-
-    <%= image_tag("loginpal_chrome_extension_uber_login.png", :class=>"homescreenshot", :alt => "screenshot2") %>
     </br>
-    <%= image_tag("loginpal_sites_index.png", :class=>"homescreenshot", :alt => "screenshot1") %>
 
+    <div class="row-fluid">
+      <div class="span6 text-center">
+        <h3 class="taglines"> Create and manage password <span class="safetytagline"> hints</span> for the websites you visit<h3>
+        <%= image_tag("loginpal_sites_index.png", :class=>"homescreenshot", :alt => "screenshot1") %>
+      </div>
+      <div class="span6 text-center">
+        <h3 class="taglines"> Easily access <span class="safetytagline"> hints</span> when you need them most with our chrome extension
+        </h3>
+        <%= image_tag("loginpal_chrome_extension_uber_login.png", :class=>"homescreenshot", :alt => "screenshot2") %>
+        </div>
+        <br>
+      </div>
+      <h2 class="bottomtagline text-center"> Password <span class="safetytagline"> hints</span> are the safest way to help you login to the websites you visit
+      </h2>
+    </div>
   </div>
 </div>
 <script>
