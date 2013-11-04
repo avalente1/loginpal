@@ -3,13 +3,13 @@
 <% end %>
 <div class="row-fluid">
   <div class="span10 offset1">
-    <h1 class = "text-center" id="need"> A Free & Secure Password Manager</h1>
+    <h1 class = "text-center" id="need">Free & Secure Password Manager</h1>
 
     <% if current_user.present? %>
         <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">Refer friends!</a>
       <% else %>
       <!-- MODAL BELOW -->
-      <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">SIGN UP</a>
+      <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">SIGN UP NOW</a>
 
         <%= render 'modal' %>
 
