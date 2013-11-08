@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   before_action :user_must_be_signed_in, except: [:home]
   before_action :find_site, only: [:destroy]
-  before_action :find_sites, only: [:index, :edit]
+  before_action :find_sites, only: [:index, :edit, :tiles]
   before_action :current_user_must_own_site, only: [:destroy]
   before_action :current_user_must_own_sites, only: [:index]
   def home
@@ -108,6 +108,35 @@ class SitesController < ApplicationController
       format.js
     end
   end
+
+  def tiles
+    @site = Site.new
+    @sites_sort = @sites.sort_by{ |site| site[:company].titleize} #TODO sort_by usage or times visited site, favorites, etc. (High, Med, Low usage)
+    @sites_decrypted = Hash.new({})
+    @sites_decrypted["sites"] = Hash.new({})
+    @sites_sort.each do |site|
+      @sites_decrypted["sites"][site.company] = Hash.new({})
+      # @sites_decrypted["sites"][site.company]["id"] = site.id
+      @sites_decrypted["sites"][site.company]["favicon"] = site.favicon
+      @sites_decrypted["sites"][site.company]["site"] = site.site
+      @sites_decrypted["sites"][site.company]["company"] = site.company
+      @sites_decrypted["sites"][site.company]["username"] = site.username_sb.decrypt(ENV['SB_DECRYPT'])
+      @sites_decrypted["sites"][site.company]["pwhint"] = site.pwhint_sb.decrypt(ENV['SB_DECRYPT'])
+    end
+    @typeahead_array = Array.new
+    @typeahead = Typeaheadtopsite.all.each{|t| @typeahead_array << t.company }
+
+    @username_unique_array = Array.new
+    @username_unique = current_user.sites.select("username_sb, username_sb_key, username_sb_iv")
+    @username_unique.each{|u| @username_unique_array << u.username_sb.decrypt(ENV['SB_DECRYPT']) }
+    @username_unique_array_distinct = @username_unique_array.uniq
+  end
+
+  def dashboard
+    @users = User.all.order("email")
+    @sites = Site.select("company").uniq.order("company")
+  end
+
   def sites_params
     params.require(:site).permit(:company, :username_sb, :pwhint_sb)
   end

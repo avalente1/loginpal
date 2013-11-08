@@ -11,7 +11,7 @@
       <!-- MODAL BELOW -->
       <a href="#myModal" role="button" class="btn btn-primary modalbutton" data-toggle="modal">SIGN UP NOW</a>
 
-        <%= render 'modal' %>
+        <%= render 'sites/modal' %>
 
       <!-- MODAL ABOVE -->
     <% end %>
@@ -20,7 +20,9 @@
     <div class="row-fluid">
       <div class="span6 text-center">
         <h3 class="taglines"> <span class="badge badge-warning badger">1</span> Create & manage password <span class="safetytagline"> hints</span> for the websites you visit<h3>
-        <%= link_to image_tag("loginpal_sites_index.png", class:"homescreenshot", alt: "Password Hint Manager"), "#", class:"thumbnail", remote:"true" %>
+        <a href="#myModal" role="button" class="thumbnail" alt="Password Hint Manager" data-toggle="modal">
+          <img src="assets/loginpal_sites_index.png" alt="Password Hint Manager" class="homescreenshot">
+        </a>
       </div>
       <div class="span6 text-center">
         <h3 class="taglines"><span class="badge badge-warning badger">2</span> Easily access <span class="safetytagline"> hints</span> when you need them most with our chrome extension

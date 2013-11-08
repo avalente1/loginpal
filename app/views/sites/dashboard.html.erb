@@ -1,0 +1,23 @@
+<div class= "row-fluid">
+  <div class= "span4 offset1">
+    <table>
+      <% @sites.each do |site| %>
+      <tr>
+        <td><%= site.company %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class= "span4 offset1">
+    <%= @users.count %>
+    <table>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+

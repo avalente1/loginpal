@@ -1,6 +1,8 @@
 Password::Application.routes.draw do
   root "sites#index"
   get "home" => "sites#home", as: 'home'
+  get "dashboard" => "sites#dashboard", as: 'dashboard'
+  get "tiles" => "sites#tiles", as: 'tiles'
 
   # get "sessions/new" => "sessions#new", as: 'new_session'
   post "sessions" => "sessions#create", as: 'sessions'
