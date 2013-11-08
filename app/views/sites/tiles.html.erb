@@ -15,12 +15,7 @@
 
     <div class="btn-group">
       <% @sites.each do |site| %>
-      <%#= link_to "#{image_tag(site.favicon) site.company}", site.site %>
-      TODO Working here now
-      <button class="btn">
-        <%= image_tag site.favicon %>
-        <%= site.company %>
-      </button>
+      <%= link_to image_tag(site.favicon), site.site, class:"btn", target:"_blank" %>
       <button class="btn dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
       </button>
