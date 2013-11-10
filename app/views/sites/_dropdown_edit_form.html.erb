@@ -1,0 +1,8 @@
+<div>
+  <%= form_tag site_url(@site.id), url: update_tile_url, method: :patch, remote: true, id:"tile_form_#{@site.id}" do %>
+    <%= text_field_tag :username_sb, (@site.username_sb.decrypt ENV['SB_DECRYPT']) %>
+    <%= text_field_tag :pwhint_sb, (@site.pwhint_sb.decrypt ENV['SB_DECRYPT']) %>
+    <% hidden_field_tag :id, @site.id %>
+    <%= button_tag "Submit", class: "btn btn-inverse" %>
+  <% end %>
+</div>

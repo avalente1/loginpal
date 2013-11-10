@@ -7,37 +7,43 @@
           <td id="td_username">Username</th>
           <td id="td_pwhint">Password hint</th>
           <td id="td_edit"> </th>
-          <td id="td_delete"> </th>
         </tr>
       </thead>
     </table>
-    <%= render 'form_new', :site => Site.new %>
-    <div class="row-fluid">
-      <% @sites.each do |site| %>
-        <div class="span2">
-          <div class="panel panel-default" id="site_<%= site.id %>">
-          <%= link_to image_tag(site.favicon) + " " + site.company, "http://www.#{site.site}", class:"btn", target:"_blank" %>
-          <%= link_to '<i class="fa fa-plus"></i>'.html_safe, "#", class:"btn", remote:"true" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="btn-group">
-      <% @sites.each do |site| %>
-      <%= link_to image_tag(site.favicon), "http://www.#{site.site}", class:"btn", target:"_blank" %>
-      <button class="btn dropdown-toggle" data-toggle="dropdown">
-        <i class="fa fa-plus"></i>
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-          <%= link_to "Username: #{site.username_sb.decrypt ENV['SB_DECRYPT']}", "http://www.#{site.site}" %>
-        </li>
-        <li>
-          <%= link_to "Hint: #{site.pwhint_sb.decrypt ENV['SB_DECRYPT']}", "http://www.#{site.site}" %>
-        </li>
-      </ul>
-      <% end %>
+    <%= form_for @site, url: create_tile_url, remote: true, id:"tile_new", class: "form-inline" do |f| %>
+      <table class="table table-hover table-condensed" id="new_tile_table">
+        <tbody>
+          <tr id="add">
+            <td id="td_company">
+              <%= f.text_field :company, id:"company_new", placeholder: "Example: Facebook", class: "website input-large typeahead", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@typeahead_array}" %>
+            </td>
+            <td id="td_username"><%= f.text_field :username_sb, placeholder: "Username", id: "username_new", class: "typeahead username input-large", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@username_unique_array_distinct}" %></td>
+            <td id="td_pwhint"><%= f.text_field :pwhint_sb, placeholder: "Password hint", id: "pwhint_new", class: "typeahead pwhint input-large", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@password_unique_array_distinct}", "data-toggle"=>"tooltip", "data-placement"=>"left", title: "Add a hint that will help you remember your password" %></td>
+            <td id="td_edit"><%= f.button '<i class="icon-plus"></i>'.html_safe, class: "btn btn-success", id:"new" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+    <% @sites_sort.each do |site| %>
+      <%= render "tile", :site => site %>
+    <% end %>
+    <div class="text-center">
+      <%= link_to "Switch to table view", sites_url, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function() {
+  console.log('document loaded')
+  $('#pwhint_new').tooltip(function() {
+  });
+
+  $('.website .typeahead').typeahead(function() {
+  });
+  $('.typeahead .username').typeahead(function() {
+  });
+  $('.typeahead .pwhint').typeahead(function() {
+  });
+});
+</script>

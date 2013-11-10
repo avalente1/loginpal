@@ -3,10 +3,10 @@
     <tbody>
       <tr id="add">
         <td id="td_company">
-          <%= f.text_field :company, id:"company_new", placeholder: "Example: Facebook", class: "input-large typeahead", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@typeahead_array}" %>
+          <%= f.text_field :company, id:"company_new", placeholder: "Example: Facebook", class: "website input-large typeahead", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@typeahead_array}" %>
         </td>
-        <td id="td_username"><%= f.text_field :username_sb, placeholder: "Username", id: "username_new", class: "typeahead username", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@username_unique_array_distinct}" %></td>
-        <td id="td_pwhint"><%= f.text_field :pwhint_sb, placeholder: "Password hint", id: "pwhint_new", "data-toggle"=>"tooltip", "data-placement"=>"bottom", title: "Add a hint that will help you remember your password" %></td>
+        <td id="td_username"><%= f.text_field :username_sb, placeholder: "Username", id: "username_new", class: "typeahead username input-large", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@username_unique_array_distinct}" %></td>
+        <td id="td_pwhint"><%= f.text_field :pwhint_sb, placeholder: "Password hint", id: "pwhint_new", class: "typeahead pwhint input-large", autocomplete: "off", "data-provide" => "typeahead", "data-items" => "8", "data-source" => "#{@password_unique_array_distinct}", "data-toggle"=>"tooltip", "data-placement"=>"left", title: "Add a hint that will help you remember your password" %></td>
         <td id="td_edit"><%= f.button '<i class="icon-plus"></i>'.html_safe, class: "btn btn-success", id:"new" %></td>
         <td id="td_delete"> </td>
       </tr>
@@ -20,10 +20,11 @@ $(document).ready(function() {
   $('#pwhint_new').tooltip(function() {
   });
 
-  $('.input-large .typeahead').typeahead(function() {
+  $('.website .typeahead').typeahead(function() {
   });
-
   $('.typeahead .username').typeahead(function() {
+  });
+  $('.typeahead .pwhint').typeahead(function() {
   });
 });
 </script>

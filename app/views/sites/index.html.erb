@@ -18,16 +18,12 @@
     <% end %>
     <% if @sites.count <= 8 %>
       <div class="text-center chromelink">
-      <%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank", class: "btn btn-success btn-large" %>
+        <%= link_to '<i class="icon-google-plus"></i></i> Download our chrome extension'.html_safe, "https://chrome.google.com/webstore/detail/loginpal/efagimnfpcpaoommipfahieedckachdh", target: "_blank", class: "btn btn-success btn-large" %>
+      </div>
+    <% else %>
+      <div class="text-center">
+        <%= link_to "Try the tile view", tiles_url, class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>
 </div>
-
-
-<script>
-  $("#company_new").focus();
-  setTimeout(function(){
-     window.location.reload(1);
-  }, 1000000);
-</script>

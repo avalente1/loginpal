@@ -50,7 +50,7 @@
           <ul class="nav pull-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu open">
                 <li>
                   <%= link_to '<i class="icon-cog"></i> Account'.html_safe, user_url(current_user.id), method: "get" %>
                 </li>
@@ -75,6 +75,10 @@
 <%= yield %>
 
 <script>
+  $("#company_new").focus();
+  setTimeout(function(){
+     window.location.reload(1);
+  }, 1000000);
   $(".collapse").collapse()
 </script>
 

@@ -67,6 +67,11 @@ class SitesController < ApplicationController
     @username_unique.each{|u| @username_unique_array << u.username_sb.decrypt(ENV['SB_DECRYPT']) }
     @username_unique_array_distinct = @username_unique_array.uniq
 
+    @password_unique_array = Array.new
+    @password_unique = current_user.sites.select("pwhint_sb, pwhint_sb_key, pwhint_sb_iv")
+    @password_unique.each{|u| @password_unique_array << u.pwhint_sb.decrypt(ENV['SB_DECRYPT']) }
+    @password_unique_array_distinct = @password_unique_array.uniq
+
     # Typeaheadtopsite.all.each{|t| t.save } # Save all typeaheadtopsites to make the favicon run
     # User.all.each{|t| t.save }
     ####### ARRAY of hashes #########
@@ -130,6 +135,55 @@ class SitesController < ApplicationController
     @username_unique = current_user.sites.select("username_sb, username_sb_key, username_sb_iv")
     @username_unique.each{|u| @username_unique_array << u.username_sb.decrypt(ENV['SB_DECRYPT']) }
     @username_unique_array_distinct = @username_unique_array.uniq
+
+    @password_unique_array = Array.new
+    @password_unique = current_user.sites.select("pwhint_sb, pwhint_sb_key, pwhint_sb_iv")
+    @password_unique.each{|u| @password_unique_array << u.pwhint_sb.decrypt(ENV['SB_DECRYPT']) }
+    @password_unique_array_distinct = @password_unique_array.uniq
+  end
+
+  def create_tile
+    @site = Site.new(sites_params)
+    @site.user_id = current_user.id
+    respond_to do |format|
+      if @site.save
+        format.html {redirect_to sites_url, notice: "Succesfully added a website!" }
+        format.json { render action: 'index', status: :created, location: @site }
+        format.js
+      else
+        flash.now[:error] = "Please fill in all fields"
+        format.html { render 'index' }
+        format.json { render json: @note.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def delete_tile
+    @site = Site.find(params[:site_id])
+    @site.destroy
+    respond_to do |format|
+      flash.now[:notice] = "Succesfully deleted"
+      format.html { redirect_to sites_url }
+      format.json { head :no_content }
+      format.js
+    end
+  end
+
+  def edit_tile
+    @site = Site.find(params[:site_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  def update_tile
+    @site = Site.find(params[:site_id])
+    @site.company = params[:company]
+    @site.username_sb = params[:username_sb]
+    @site.pwhint_sb = params[:pwhint_sb]
+    @site.save
+    respond_to do |format|
+      format.js
+    end
   end
 
   def dashboard

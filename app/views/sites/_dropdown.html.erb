@@ -1,0 +1,15 @@
+<ul class="dropdown-menu" id="tile_dropdown_<%= site.id %>">
+  <li>
+    <%= link_to "Username: #{site.username_sb.decrypt ENV['SB_DECRYPT']}", "http://www.#{site.site}", id:"username_#{site.id}", target: "_blank" %>
+  </li>
+  <li>
+    <%= link_to "Hint: #{site.pwhint_sb.decrypt ENV['SB_DECRYPT']}", "http://www.#{site.site}", id:"password_#{site.id}", target: "_blank", class:"divide" %>
+  </li>
+  <li>
+    <%= link_to '<i class="fa fa-times"></i>'.html_safe + " Delete", delete_tile_url(site_id: site.id), method: "delete", remote: true %>
+  </li>
+  <li>
+    <%= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe + " Edit", sites_url %>
+    <%#= link_to '<i class="fa fa-pencil-square-o"></i>'.html_safe + " Edit", edit_tile_url(site_id: site.id), remote: true %>
+  </li>
+</ul>
