@@ -12,12 +12,22 @@
       </thead>
     </table>
     <%= render 'form_new', :site => Site.new %>
+    <div class="row-fluid">
+      <% @sites.each do |site| %>
+        <div class="span2">
+          <div class="panel panel-default" id="site_<%= site.id %>">
+          <%= link_to image_tag(site.favicon) + " " + site.company, "http://www.#{site.site}", class:"btn", target:"_blank" %>
+          <%= link_to '<i class="fa fa-plus"></i>'.html_safe, "#", class:"btn", remote:"true" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
     <div class="btn-group">
       <% @sites.each do |site| %>
       <%= link_to image_tag(site.favicon), "http://www.#{site.site}", class:"btn", target:"_blank" %>
       <button class="btn dropdown-toggle" data-toggle="dropdown">
-        <span class="caret"></span>
+        <i class="fa fa-plus"></i>
       </button>
       <ul class="dropdown-menu">
         <li>
