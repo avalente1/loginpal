@@ -47,19 +47,6 @@
               </ul>
             </li>
           </ul>
-          <ul class="nav pull-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
-              <ul class="dropdown-menu open">
-                <li>
-                  <%= link_to '<i class="icon-cog"></i> Account'.html_safe, user_url(current_user.id), method: "get" %>
-                </li>
-                <li>
-                  <%= link_to '<i class="icon-signout"></i> Sign Out'.html_safe, session_url, method: 'delete' %>
-                </li>
-              </ul>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
