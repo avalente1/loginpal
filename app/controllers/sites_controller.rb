@@ -187,7 +187,7 @@ class SitesController < ApplicationController
   end
 
   def dashboard
-    @users = User.all.order("email")
+    @users = User.all.order("created_at")
     @sites = Site.select("company").uniq.order("company")
   end
 
